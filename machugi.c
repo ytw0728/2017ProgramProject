@@ -16,7 +16,7 @@ void machugi_menu(void){
 	//printf("파일명(일차):");
 	//scanf("%s",day);
 
-	day = userInputS(0, "파일명(일차) : ");
+	day = userInputS(0, "파일명(일차) : ", 1);
 
 	int WbDay=atoi(day);
 	now = getNthWbPtr(WbDay);
@@ -34,7 +34,7 @@ void machugi_menu(void){
 	 */
 
 	//scanf("%d",&type);
-	type=userInputN("출력방식(알파벳  순서대로:1, 무작위:2)");
+	type=userInputN("출력방식(알파벳  순서대로:1, 무작위:2)", 1);
 	machugi(type,now,WbDay);
 
 }
@@ -74,10 +74,11 @@ void machugi(int type,Wordbook *now,int WbDay){
 		Word * Wnow=getNthWPtr(WbDay,question[q_num]);
 		printf("%s->",Wnow->eng);
 
-		ans=userInputS(0,"");
+		ans=userInputS(0,"", 1);
 		if((strcmp(ans,".quit"))==0){
 			printf("당신의 점수는 %.2f 점입니다.\n",((float)cnt_c/cnt_q)*100);
-			while( getchar() != '\n' ) ;
+			printf("계속하려면 엔터를 입력해주세요...");
+			while( getch() != '\n' ) ;
 			break;
 		}
 		if((strcmp(ans,Wnow->korDef[0])==0)||(strcmp(ans,Wnow->korDef[1])==0)||(strcmp(ans,Wnow->korDef[2])==0)){

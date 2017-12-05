@@ -20,8 +20,9 @@ int funcRoute(); // funcCode = 102 // start functions by user input
 
 
 // user input functions
-int userInputN( char* message /* msg to print for input */); // funcCode = 103 // return user's Input, Number | return ( error : -1, no error : positive Int )
-char* userInputS( int type /* length of string */, char* message /* msg to print for input*/); // funcCode = 104 // return user's Input, String[Character array] ( type | nLetter( 1~n) : n, dynamic : 0 ) korean -> *2 | return ( error : null, no error : char pointer )
+int getch(void); // for invisible input
+int userInputN( char* message /* msg to print for input */, int visible); // funcCode = 103 // return user's Input, Number | return ( error : -1, no error : positive Int )
+char* userInputS( int type /* length of string [ 0 / n ] */, char* message /* msg to print for input*/, int visible /* visibility of user input [ true / false ] */); // funcCode = 104 // return user's Input, String[Character array] ( type | nLetter( 1~n) : n, dynamic : 0 ) korean -> *2 | return ( error : null, no error : char pointer )
 
 
 // linked list and file functions
@@ -99,7 +100,7 @@ int funcRoute(){ // funcCode = 102
 		printf("5 : %-20s\n", "프로그램 종료");
 
 		do{
-				n = userInputN("번호를 선택하세요 : ");
+				n = userInputN("번호를 선택하세요 : ", 1);
 				if( n < 1 || FUNCNUM < n ) printf("[ 1 ~ %d 사이의 값을 입력해주세요 ]\n", FUNCNUM);
 		}while( n < 1 || n > FUNCNUM );
 
@@ -115,16 +116,37 @@ int funcRoute(){ // funcCode = 102
 		return err;
 }
 
+int getch(void){  
+	int ch;  
+	struct termios buf;  
+	struct termios save;  
 
-int userInputN(char* message){ // funcCode = 103
+	tcgetattr(0, &save);  
+	buf = save;  
+	buf.c_lflag &= ~(ICANON|ECHO);  
+	buf.c_cc[VMIN] = 1;  
+	buf.c_cc[VTIME] = 0;  
+	tcsetattr(0, TCSAFLUSH, &buf);  
+	ch = getchar();  
+	tcsetattr(0, TCSAFLUSH, &save);  
+	return ch;  
+}
+
+
+int userInputN(char* message, int visible){ // funcCode = 103
 		funcStat = 103;
 		int err = 0;
+
+
+		int (*func)(void);
+		if( visible ) func = getchar;
+		else func = getch;
 
 		char c;
 		int spaceFlag = 0, re= 0, num = 0;
 
 		printf("%s", message);
-		while( ( c = getchar() ) ){
+		while( ( c = func() ) ){
 				if( c == '\n' || c == EOF) break;
 
 				if( '0' <= c && c <= '9' ){
@@ -146,16 +168,22 @@ int userInputN(char* message){ // funcCode = 103
 		if( err ) return -1;
 		if( re ){
 				printf("[하나의 정수만 입력해주세요]\n");
-				while( c = getchar() ) if( c == '\n' || c == EOF) break;
-				num = userInputN(message);
+				while( c = func() ) if( c == '\n' || c == EOF) break;
+				num = userInputN(message, visible);
 		}
+
+		if( !visible ) printf("\n");
 		return num;
 }
 
-char* userInputS( int type , char* message){// funcCode = 104
+char* userInputS( int type , char* message, int visible){// funcCode = 104
 		funcStat = 104;
 		if( type < 0 ) return NULL;
 		
+		int (*func)(void);
+		if( visible ) func = getchar;
+		else func = getch;
+
 		int err = 0;
 		char* str;
 		char buffer[STRBUF];
@@ -168,7 +196,7 @@ char* userInputS( int type , char* message){// funcCode = 104
 
 		index = 0;
 		printf("%s", message);
-		while( (c = getchar() )){
+		while( (c = func() )){
 				if( c == '\n' || c == EOF ) break;
 				if( index < STRBUF && (type == 0 || index < type ) ) buffer[index++] = c;	
 				else{
@@ -181,8 +209,8 @@ char* userInputS( int type , char* message){// funcCode = 104
 		if( err ) return NULL; 
 		if( re ){
 			printf("[ 다시 입력해주세요. (최대 %dByte ) ]\n", type == 0 ? STRBUF : type);
-			while( c = getchar() ) if( c == '\n' || c == EOF ) break;
-			str = userInputS( type, message);
+			while( c = func() ) if( c == '\n' || c == EOF ) break;
+			str = userInputS( type, message, visible);
 		}
 		else{
 			if( type > 0 ) str = (char*)calloc( type+1, sizeof(char));
@@ -190,6 +218,7 @@ char* userInputS( int type , char* message){// funcCode = 104
 			strcpy( str, buffer);
 		}
 
+		if( !visible ) printf("\n");
 		return str;
 }
 

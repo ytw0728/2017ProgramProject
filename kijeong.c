@@ -43,8 +43,8 @@ int menu(void)
 		printf("1. 새 파일 추가하기\t\t2. 새 단어 추가하기\n");
 		printf("3. 단어장 보기\t\t\t4. 단어 파일 목록보기\n");
 		printf("5. 단어장 관리 종료\n\n");
-		printf("번호를 입력하세요 : ");
-		choice = userInputN("");
+
+		choice = userInputN("번호를 입력하세요 : ", 1);
 		int ins1;
 		char buf[STRBUF];
 		//선택 분기
@@ -56,7 +56,7 @@ int menu(void)
 			case 2:
 				break;
 			case 3:
-				ins1 = userInputN("파일명(일차) : ");
+				ins1 = userInputN("파일명(일차) : ", 1);
 				Wordbook* tmpWb = getNthWbPtr(ins1);
 				Word* tmp = tmpWb->wHead;
 				while(tmp->next != NULL)
@@ -64,11 +64,13 @@ int menu(void)
 					printf("%s %s %s %s\n", tmp->eng, tmp->korDef[0], tmp->korDef[1], tmp->korDef[2]);
 					tmp = tmp->next;
 				}
-				strcpy(buf, userInputS(0, "계속하려면 quit이라고 쳐주세요...\n") );
+				printf("계속하려면 q를 입력해주세요...\n");
+				while( getch() != 'q' || getch() != 'Q' );
 				break;
 			case 4:
 				print_nDic();
-				strcpy(buf, userInputS(0, "계속하려면 quit이라고 쳐주세요...\n") );
+				printf("계속하려면 q를 입력해주세요...\n");
+				while( getch() != 'q' || getch() != 'Q' );
 				break;
 			case 5:
 				return 1;
