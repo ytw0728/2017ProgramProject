@@ -2,3 +2,6 @@
 result/*.o
 *.gch
 result/*.gch
+
+*.out
+result/*.out
