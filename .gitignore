@@ -1,0 +1,4 @@
+*.o
+result/*.o
+*.gch
+result/*.gch
