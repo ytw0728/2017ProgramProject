@@ -38,7 +38,7 @@ int writeWbFILE( Wordbook* node /* struct node to write on file */); //funcCode 
 // testcode //
  void printAllWord(){
 	printf("%d\n", wordbookCNT );
- 	printf("\nletsprint\n");
+ 	//printf("\nletsprint\n");
  	Wordbook* now;
  	now = head;
 
@@ -61,9 +61,11 @@ int main(){
 		init();
 
 		//printAllWord();
+
 		while( programStat ){
 				funcRoute();
 		}
+
 		return 0;
 }
 
