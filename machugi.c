@@ -20,7 +20,6 @@ void machugi_menu(void){
 	
 	int WbDay=atoi(day);
 	now = getNthWbPtr(WbDay);
-
 	//openWbFILE(now->id);
 
 	//day = (char*)realloc( day, strlen(day) + 50 * sizeof(char) + 1);
