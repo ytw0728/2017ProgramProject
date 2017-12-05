@@ -10,7 +10,8 @@ extern int wordbookCNT;
 
 
 
-Wordbook* getNthWbPtr(int n){
+Wordbook* getNthWbPtr(int n)
+{
 	Wordbook* now = head;
 	int i;
 	for(i = 0; i < n - 1; i++)

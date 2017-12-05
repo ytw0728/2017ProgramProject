@@ -1,14 +1,29 @@
+CC=gcc
+ObjectDIR=../Object
+OBJECTS= $(ObjectDIR)/core.o $(ObjectDIR)/kijeong.o $(ObjectDIR)/machugi.o
+
 Start:  Build Link
 
 Build:  ../*.c
-		gcc -c ../*.c ../SSUpreme.h
-		mv *.o ../Object
+		$(CC) -c ../*.c ../SSUpreme.h 2>log/build.log || true
+		@mv *.o ../Object
 
+BErrMsgProc:	log/build.log
+				@cat log/build.log | grep "error" -3 ./log/error.log || true
 
-Link :  ../Object/core.o ../Object/kijeong.o ../Object/machugi.o
-		gcc -o a.out ../Object/core.o ../Object/kijeong.o ../Object/machugi.o
+BErrChk: log/error.log
+		 @echo "[빌드 과정에서 에러가 발생했습니다. ]  => log/error.log file 참고"
+
+Link :  $(OBJECTS) 	
+		$(CC) -o a.out $(OBJECTS)
 
 clean : 
-		rm ../Object/*.o
-		rm a.out
-		rm ../*.gch
+		@echo remove *.o , a.out, *.gch in our project
+		@rm ../Object/*.o
+		@rm a.out
+		@rm ../*.gch
+
+
+##../Object/core.o ../Object/kijeong.o ../Object/machugi.o
+
+## 후ㅜ.. 빌드에러 어떻게 grep 해서 넣는거ㅑㅇ아ㅓㅏㅏ아앙

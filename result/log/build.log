@@ -1,0 +1,14 @@
+../machugi.c: In function ‘machugi_menu’:
+../machugi.c:19:6: warning: assignment makes pointer from integer without a cast [enabled by default]
+  day = userInputS(0, "파일명(일차) : ", 1);
+      ^
+../machugi.c:22:6: warning: assignment makes pointer from integer without a cast [enabled by default]
+  now = getNthWbPtr(WbDay);
+      ^
+../machugi.c: In function ‘machugi’:
+../machugi.c:77:6: warning: assignment makes pointer from integer without a cast [enabled by default]
+   ans=userInputS(0,"", 1);
+      ^
+../SSUpreme.h:37:1: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘void’
+ void machugi_menu(void);
+ ^

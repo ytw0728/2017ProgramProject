@@ -20,3 +20,18 @@ typedef struct wordbook{ // struct of wordbook ( will be the node of wordbook li
 	struct word* wHead;
 }Wordbook;	
 /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+/////////////////////////////////	function declaration	////////////////////////////////////////
+
+//	kijeong.c
+Word* getNthWPtr(int Wbn, int Wn);
+int menu(void);
+int makeDic(int dicNum);
+void print_nDic(void);
+
+
+//	machugi.c
+void machugi_menu(void);
+void machugi(int type,Wordbook *now,int WbDay);
