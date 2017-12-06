@@ -114,15 +114,8 @@ int paint_hang(int failcount) //그림그리는 함수.
 	a[5]=" \\";
 	
 	gotoxy(24,3);
-#include "SSUpreme.h"
 
-int hangman() 
-{	
-	char breakC;
-
-	int blank[40]={0,};
-	int failcount=-1;
-	int len,	for(i=0;i<failcount+1;i++)
+	for(i=0;i<failcount+1;i++)
 		printf("%s",a[i]);
 	
 	return 0;
