@@ -26,6 +26,7 @@ typedef struct wordbook{ // struct of wordbook ( will be the node of wordbook li
 /////////////////////////////////	function declaration	////////////////////////////////////////
 
 //	kijeong.c
+Wordbook* getNthWbPtr(int n);
 Word* getNthWPtr(int Wbn, int Wn);
 int menu(void);
 int makeDic(int dicNum);
