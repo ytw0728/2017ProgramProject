@@ -38,6 +38,6 @@ void machugi(int type,Wordbook *now,int WbDay);
 
 
 //	hangman.c
-int hangman();
+int hangman_menu();
 int paint_hang(int );
 void paint_frame( char wordprint[], int len);

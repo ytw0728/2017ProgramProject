@@ -11,7 +11,7 @@ void machugi_menu(void){
 	int type;
 	char* day;
 	FILE *day_fp;
-	Wordbook *now = (Wordbook*)malloc(sizeof(Wordbook));
+	Wordbook *now;
 
 	//printf("파일명(일차):");
 	//scanf("%s",day);
