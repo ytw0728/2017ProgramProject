@@ -1,11 +1,12 @@
 CC=gcc
 ObjectDIR=../Object
-OBJECTS= $(ObjectDIR)/core.o $(ObjectDIR)/kijeong.o $(ObjectDIR)/machugi.o
+OBJECTS= $(ObjectDIR)/core.o $(ObjectDIR)/kijeong.o $(ObjectDIR)/machugi.o $(ObjectDIR)/hangman.o
 
 Start:  Build Link
 
 Build:  ../*.c
-		$(CC) -c ../*.c ../SSUpreme.h 2>log/build.log || true
+		@$(CC) -c ../*.c ../SSUpreme.h 2>log/build.log || true
+		@cat log/build.log
 		@mv *.o ../Object
 
 BErrMsgProc:	log/build.log

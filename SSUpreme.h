@@ -35,3 +35,9 @@ void print_nDic(void);
 //	machugi.c
 void machugi_menu(void);
 void machugi(int type,Wordbook *now,int WbDay);
+
+
+//	hangman.c
+int hangman();
+int paint_hang(int );
+void paint_frame( char wordprint[], int len);
