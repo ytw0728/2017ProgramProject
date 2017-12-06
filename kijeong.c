@@ -48,6 +48,7 @@ int menu(void)
 		choice = userInputN("번호를 입력하세요 : ", 1);
 		int ins1;
 		char buf[STRBUF];
+		char breakC;
 		//선택 분기
 		switch(choice)
 		{
@@ -66,12 +67,12 @@ int menu(void)
 					tmp = tmp->next;
 				}
 				printf("계속하려면 q를 입력해주세요...\n");
-				while( getch() != 'q' || getch() != 'Q' );
+				while( ( breakC = getch() ) != 'q' && breakC != 'Q' );
 				break;
 			case 4:
 				print_nDic();
 				printf("계속하려면 q를 입력해주세요...\n");
-				while( getch() != 'q' || getch() != 'Q' );
+				while( ( breakC = getch() ) != 'q' && breakC != 'Q' );
 				break;
 			case 5:
 				return 1;

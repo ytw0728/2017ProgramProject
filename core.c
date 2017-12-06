@@ -240,7 +240,6 @@ int initWbList(){ // funcCode = 199
 
 		openWbFILE(temp);
 		free(temp);
-		wordbookCNT++;
 	}
 
 	fclose(fp);
@@ -257,6 +256,8 @@ int addWbList( Wordbook* newNode ){ // funcCode = 120 // insert new wordbook nod
 		while( now->next != NULL ) now = now->next;
 		now->next = newNode;
 	}
+
+	if( !err ) wordbookCNT++;
 	return err;
 }
 
@@ -398,7 +399,7 @@ int writeWbFILE( Wordbook* node){ // funcCode = 111
 	}
 	Word* now = node->wHead;
 	while( now != NULL ){
-		fprintf(fp, "%s %s %s %s\n", now->eng, now->korDef[0], now->korDef[1], now->korDef[2] );
+		fprintf(fp, "%s %s %s %s \n", now->eng, now->korDef[0], now->korDef[1], now->korDef[2] );
 		now = now->next;
 	}
 
@@ -416,7 +417,6 @@ int writeWbFILE( Wordbook* node){ // funcCode = 111
 	}
 
 	fclose(fp);
-	wordbookCNT++;
 	return err;
 }
 
