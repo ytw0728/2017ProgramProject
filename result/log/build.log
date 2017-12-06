@@ -1,3 +1,7 @@
+../hangman.c: In function ‘hangman’:
+../hangman.c:31:12: warning: assignment makes pointer from integer without a cast [enabled by default]
+   userinput=userInputS(1,"입력 : ");
+            ^
 ../machugi.c: In function ‘machugi_menu’:
 ../machugi.c:19:6: warning: assignment makes pointer from integer without a cast [enabled by default]
   day = userInputS(0, "파일명(일차) : ", 1);

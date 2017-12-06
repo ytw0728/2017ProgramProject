@@ -16,7 +16,11 @@ BErrChk: log/error.log
 		 @echo "[빌드 과정에서 에러가 발생했습니다. ]  => log/error.log file 참고"
 
 Link :  $(OBJECTS) 	
-		$(CC) -o a.out $(OBJECTS)
+		@$(CC) -o a.out $(OBJECTS)
+		@echo
+		@echo [빌드 완료]
+		@echo 
+		@echo
 
 clean : 
 		@echo remove *.o , a.out, *.gch in our project
