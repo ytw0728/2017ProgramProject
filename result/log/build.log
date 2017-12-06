@@ -3,9 +3,9 @@
    userinput=userInputS(1,"입력 : ");
             ^
 ../machugi.c: In function ‘machugi_menu’:
-../machugi.c:19:6: warning: assignment makes pointer from integer without a cast [enabled by default]
-  day = userInputS(0, "파일명(일차) : ", 1);
-      ^
+../machugi.c:19:8: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  day = (char*)userInputS(0, "파일명(일차) : ", 1);
+        ^
 ../machugi.c: In function ‘machugi’:
 ../machugi.c:77:6: warning: assignment makes pointer from integer without a cast [enabled by default]
    ans=userInputS(0,"", 1);

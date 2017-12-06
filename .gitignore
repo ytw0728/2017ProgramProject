@@ -6,3 +6,5 @@ result/*.out
 
 *.o
 Object/*.o
+
+result/log/*
