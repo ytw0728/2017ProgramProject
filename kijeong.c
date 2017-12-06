@@ -98,6 +98,7 @@ int makeDic(int dicNum)
 	writeWbFILE(Wbnew);
 }
 
+//print all .dic file
 void print_nDic(void)
 {
 	int i = 0;
