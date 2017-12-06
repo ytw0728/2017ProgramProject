@@ -1,11 +1,68 @@
+../hangman.c:9:6: error: conflicting types for ‘hangman_menu’
+ void hangman_menu(void){
+      ^
+../SSUpreme.h:42:5: note: previous declaration of ‘hangman_menu’ was here
+ int hangman_menu();
+     ^
+../hangman.c: In function ‘hangman_menu’:
+../hangman.c:16:6: warning: assignment makes pointer from integer without a cast [enabled by default]
+  day = userInputS(0, "파일명(일차) : ", 1);
+      ^
 ../hangman.c: In function ‘hangman’:
-../hangman.c:31:12: warning: assignment makes pointer from integer without a cast [enabled by default]
-   userinput=userInputS(1,"입력 : ");
+../hangman.c:46:2: warning: passing argument 1 of ‘getNthWPtr’ makes integer from pointer without a cast [enabled by default]
+  word = getNthWPtr(now->id,4);
+  ^
+../SSUpreme.h:30:7: note: expected ‘int’ but argument is of type ‘char *’
+ Word* getNthWPtr(int Wbn, int Wn);
+       ^
+../hangman.c:61:12: warning: assignment makes pointer from integer without a cast [enabled by default]
+   userinput=userInputS(1,"입력 : ", 1);
             ^
+In file included from ../hangman.c:117:0:
+../SSUpreme.h: In function ‘paint_hang’:
+../SSUpreme.h:29:11: error: conflicting types for ‘getNthWbPtr’
+ Wordbook* getNthWbPtr(int n);
+           ^
+../SSUpreme.h:29:11: note: previous declaration of ‘getNthWbPtr’ was here
+ Wordbook* getNthWbPtr(int n);
+           ^
+In file included from ../hangman.c:117:0:
+../SSUpreme.h:30:7: error: conflicting types for ‘getNthWPtr’
+ Word* getNthWPtr(int Wbn, int Wn);
+       ^
+../SSUpreme.h:30:7: note: previous declaration of ‘getNthWPtr’ was here
+ Word* getNthWPtr(int Wbn, int Wn);
+       ^
+In file included from ../hangman.c:117:0:
+../SSUpreme.h:38:6: error: conflicting types for ‘machugi’
+ void machugi(int type,Wordbook *now,int WbDay);
+      ^
+../SSUpreme.h:38:6: note: previous declaration of ‘machugi’ was here
+ void machugi(int type,Wordbook *now,int WbDay);
+      ^
+../hangman.c: In function ‘hangman’:
+../hangman.c:125:11: error: expected identifier or ‘(’ before ‘for’
+  int len, for(i=0;i<failcount+1;i++)
+           ^
+../hangman.c:125:36: error: expected ‘;’ before ‘)’ token
+  int len, for(i=0;i<failcount+1;i++)
+                                    ^
+../hangman.c:125:36: error: expected statement before ‘)’ token
+../hangman.c: In function ‘paint_hang’:
+../hangman.c:132:6: error: static declaration of ‘paint_frame’ follows non-static declaration
+ void paint_frame(char wordprint[], int len){
+      ^
+In file included from ../hangman.c:117:0:
+../SSUpreme.h:44:6: note: previous declaration of ‘paint_frame’ was here
+ void paint_frame( char wordprint[], int len);
+      ^
+../hangman.c:145:1: error: expected declaration or statement at end of input
+ }
+ ^
 ../machugi.c: In function ‘machugi_menu’:
-../machugi.c:19:8: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
-  day = (char*)userInputS(0, "파일명(일차) : ", 1);
-        ^
+../machugi.c:19:6: warning: assignment makes pointer from integer without a cast [enabled by default]
+  day = userInputS(0, "파일명(일차) : ", 1);
+      ^
 ../machugi.c: In function ‘machugi’:
 ../machugi.c:77:6: warning: assignment makes pointer from integer without a cast [enabled by default]
    ans=userInputS(0,"", 1);
