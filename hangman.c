@@ -12,29 +12,13 @@ void hangman_menu(void){
 	FILE *day_fp;
 	Wordbook *now = (Wordbook*)malloc(sizeof(Wordbook));
 
-	//printf("파일명(일차):");
-	//scanf("%s",day);
 
 	day = userInputS(0, "파일명(일차) : ", 1);
 
 	int WbDay=atoi(day);
 	now = getNthWbPtr(WbDay);
-	//openWbFILE(now->id);
 
-	//day = (char*)realloc( day, strlen(day) + 50 * sizeof(char) + 1);
-
-
-	//strcat(day,".dic");
-	/*
-	 * if((day_fp=fopen(day,"r"))==NULL){
-	 printf("오류: 파일을 열수없습니다.\n");
-	 exit(-1);
-	 }
-	 */
-
-	//scanf("%d",&type);
 	hangman(now,WbDay);
-
 }
 
 
