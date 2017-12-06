@@ -27,6 +27,7 @@ clean :
 		@rm ../Object/*.o
 		@rm a.out
 		@rm ../*.gch
+		
 
 
 ##../Object/core.o ../Object/kijeong.o ../Object/machugi.o

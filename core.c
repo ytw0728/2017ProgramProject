@@ -206,7 +206,7 @@ char* userInputS( int type , char* message, int visible){// funcCode = 104
 		}
 
 
-		if( err ) return NULL; 
+		if( err ) return NULL;
 		if( re ){
 			printf("[ 다시 입력해주세요. (최대 %dByte ) ]\n", type == 0 ? STRBUF : type);
 			while( c = func() ) if( c == '\n' || c == EOF ) break;
