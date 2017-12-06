@@ -1,42 +1,88 @@
 #include "SSUpreme.h"
 
-int hangman() 
+extern int funcStat;
+extern int programStat;
+extern Wordbook* head;
+extern int wordbookCNT;
+
+
+void hangman_menu(void){
+	int type;
+	char* day;
+	FILE *day_fp;
+	Wordbook *now = (Wordbook*)malloc(sizeof(Wordbook));
+
+	//printf("파일명(일차):");
+	//scanf("%s",day);
+
+	day = userInputS(0, "파일명(일차) : ", 1);
+
+	int WbDay=atoi(day);
+	now = getNthWbPtr(WbDay);
+	//openWbFILE(now->id);
+
+	//day = (char*)realloc( day, strlen(day) + 50 * sizeof(char) + 1);
+
+
+	//strcat(day,".dic");
+	/*
+	 * if((day_fp=fopen(day,"r"))==NULL){
+	 printf("오류: 파일을 열수없습니다.\n");
+	 exit(-1);
+	 }
+	 */
+
+	//scanf("%d",&type);
+	hangman(now,WbDay);
+
+}
+
+
+
+
+
+
+int hangman(Wordbook *now,int WbDay) 
 {	
 	char breakC;
-
-	int blank[40]={0,};
+	char *day = now ->id;
 	int failcount=-1;
 	int len,flag,errorflag,i;
 	errorflag=0;
-	char* solar="";
+	len = WListLen(now->id);
 	char* userinput;
-	char* mmm;
-	char word[]="mamamoo";
-	len=strlen(word);
 	char wordprint[15]={0};
+	printf("%c\n", 65);
 	for(i=0;i<len;i++)
 		wordprint[i]=95;
 
+	printf("%c\n",66 );
+	//printf("%s\n", now->id);
+	Word *word;
+	word = getNthWPtr(now->id,4);
 
+	printf("%c\n",67 );
 	system("clear");
-	while(strcmp(wordprint,word)!=0){
-
+	printf("%c\n",68 );
+	while(strcmp(wordprint,word->eng)!=0){
+		printf("%c\n",70);
 		system("clear");
+		printf("%c\n",69 );
 		flag = 0;
 
 		paint_hang(failcount);
 		paint_frame(wordprint, len);
 		
 		gotoxy(0,20);
-		userinput=userInputS(1,"입력 : ");
+		userinput=userInputS(1,"입력 : ", 1);
 
 		for(i=0;i<len;i++)
 		{
-			if(*userinput==word[i]) {
-				wordprint[i]=word[i];
+			if(*userinput==word->eng[i]) {
+				wordprint[i]=word->eng[i];
 				flag=1;
 			}
-			else if(*userinput!=word[i]&&wordprint[i]==0)
+			else if(*userinput!=word->eng[i]&&wordprint[i]==0)
 				wordprint[i]=32;
 		}
 		
@@ -51,7 +97,7 @@ int hangman()
 
 
 			printf("메뉴로 돌아가기 위해 q를 입력해주세요...\n");
-			while( ( breakC = getch() ) != 'q' && breakC != 'Q' )
+			while( ( breakC = getch() ) != 'q' && breakC != 'Q' ) ;
 			return 0;
 		}
 	}
@@ -61,7 +107,7 @@ int hangman()
 	printf("\n\n\n축하합니다! 단어를 맞추셨습니다!!!!!!!!!!!!\n\n\n");
 
 	printf("메뉴로 돌아가기 위해 q를 입력해주세요...\n");
-	while( ( breakC = getch() ) != 'q' && breakC != 'Q' )		
+	while( ( breakC = getch() ) != 'q' && breakC != 'Q' ) ;		
 	return 0;
 }
 
@@ -84,7 +130,15 @@ int paint_hang(int failcount) //그림그리는 함수.
 	a[5]=" \\";
 	
 	gotoxy(24,3);
-	for(i=0;i<failcount+1;i++)
+#include "SSUpreme.h"
+
+int hangman() 
+{	
+	char breakC;
+
+	int blank[40]={0,};
+	int failcount=-1;
+	int len,	for(i=0;i<failcount+1;i++)
 		printf("%s",a[i]);
 	
 	return 0;
@@ -105,5 +159,4 @@ void paint_frame(char wordprint[], int len){
 		
 
 }
-
 
