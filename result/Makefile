@@ -1,11 +1,12 @@
 CC=gcc
 ObjectDIR=../Object
-OBJECTS= $(ObjectDIR)/core.o $(ObjectDIR)/kijeong.o $(ObjectDIR)/machugi.o
+OBJECTS= $(ObjectDIR)/core.o $(ObjectDIR)/kijeong.o $(ObjectDIR)/machugi.o $(ObjectDIR)/hangman.o
 
 Start:  Build Link
 
 Build:  ../*.c
-		$(CC) -c ../*.c ../SSUpreme.h 2>log/build.log || true
+		@$(CC) -c ../*.c ../SSUpreme.h 2>log/build.log || true
+		@cat log/build.log
 		@mv *.o ../Object
 
 BErrMsgProc:	log/build.log
@@ -15,13 +16,18 @@ BErrChk: log/error.log
 		 @echo "[빌드 과정에서 에러가 발생했습니다. ]  => log/error.log file 참고"
 
 Link :  $(OBJECTS) 	
-		$(CC) -o a.out $(OBJECTS)
+		@$(CC) -o a.out $(OBJECTS)
+		@echo
+		@echo [빌드 완료]
+		@echo 
+		@echo
 
 clean : 
 		@echo remove *.o , a.out, *.gch in our project
 		@rm ../Object/*.o
 		@rm a.out
 		@rm ../*.gch
+		
 
 
 ##../Object/core.o ../Object/kijeong.o ../Object/machugi.o

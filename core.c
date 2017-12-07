@@ -109,7 +109,7 @@ int funcRoute(){ // funcCode = 102
 		switch( n ){
 				case 1 : machugi_menu(); break;
 				case 2 : break;
-				case 3 : break;
+				case 3 : hangman_menu(); break;
 				case 4 : menu(); break;
 				case 5 : programStat = 0; break;
 		}
@@ -206,7 +206,7 @@ char* userInputS( int type , char* message, int visible){// funcCode = 104
 		}
 
 
-		if( err ) return NULL; 
+		if( err ) return NULL;
 		if( re ){
 			printf("[ 다시 입력해주세요. (최대 %dByte ) ]\n", type == 0 ? STRBUF : type);
 			while( c = func() ) if( c == '\n' || c == EOF ) break;
@@ -240,7 +240,6 @@ int initWbList(){ // funcCode = 199
 
 		openWbFILE(temp);
 		free(temp);
-		wordbookCNT++;
 	}
 
 	fclose(fp);
@@ -257,6 +256,8 @@ int addWbList( Wordbook* newNode ){ // funcCode = 120 // insert new wordbook nod
 		while( now->next != NULL ) now = now->next;
 		now->next = newNode;
 	}
+
+	if( !err ) wordbookCNT++;
 	return err;
 }
 
@@ -398,7 +399,7 @@ int writeWbFILE( Wordbook* node){ // funcCode = 111
 	}
 	Word* now = node->wHead;
 	while( now != NULL ){
-		fprintf(fp, "%s %s %s %s\n", now->eng, now->korDef[0], now->korDef[1], now->korDef[2] );
+		fprintf(fp, "%s %s %s %s \n", now->eng, now->korDef[0], now->korDef[1], now->korDef[2] );
 		now = now->next;
 	}
 
@@ -416,7 +417,6 @@ int writeWbFILE( Wordbook* node){ // funcCode = 111
 	}
 
 	fclose(fp);
-	wordbookCNT++;
 	return err;
 }
 

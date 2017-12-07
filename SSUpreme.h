@@ -26,6 +26,7 @@ typedef struct wordbook{ // struct of wordbook ( will be the node of wordbook li
 /////////////////////////////////	function declaration	////////////////////////////////////////
 
 //	kijeong.c
+Wordbook* getNthWbPtr(int n);
 Word* getNthWPtr(int Wbn, int Wn);
 int menu(void);
 int makeDic(int dicNum);
@@ -35,3 +36,10 @@ void print_nDic(void);
 //	machugi.c
 void machugi_menu(void);
 void machugi(int type,Wordbook *now,int WbDay);
+
+
+//	hangman.c
+void hangman_menu(void);
+int hangman(Wordbook *now,int WbDay);
+int paint_hang(int );
+void paint_frame( char wordprint[], int len);
