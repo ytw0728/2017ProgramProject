@@ -17,7 +17,7 @@ void flashcard_nenu(void){
 	stop=userInputN(0,"단어를 반복출력할 시간을 입력하세요:",1);	
 	day=userInputS(0,"파일명(일차):",1);
 	WbDay=atoi(day);
-	now=getNthWbptr(WbDay);
+	now=getNthWbPtr(WbDay);
 	type=userInputN(0,"출력방식(알파벳 순서대로:1, 무작위:2)",1);
 	flashcard(now,type,WbDay,stop);
 }

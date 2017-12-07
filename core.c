@@ -108,7 +108,7 @@ int funcRoute(){ // funcCode = 102
 
 		switch( n ){
 				case 1 : machugi_menu(); break;
-				case 2 : break;
+				case 2 : flashcard_menu(); break;
 				case 3 : hangman_menu(); break;
 				case 4 : menu(); break;
 				case 5 : programStat = 0; break;

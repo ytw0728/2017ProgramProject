@@ -1,6 +1,6 @@
 CC=gcc
 ObjectDIR=../Object
-OBJECTS= $(ObjectDIR)/core.o $(ObjectDIR)/kijeong.o $(ObjectDIR)/machugi.o $(ObjectDIR)/hangman.o
+OBJECTS= $(ObjectDIR)/core.o $(ObjectDIR)/kijeong.o $(ObjectDIR)/machugi.o $(ObjectDIR)/hangman.o $(ObjectDIR)/flash.o
 
 Start:  Build Link
 

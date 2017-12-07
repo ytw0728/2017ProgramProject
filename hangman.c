@@ -133,7 +133,5 @@ void paint_frame(char wordprint[], int len){
 		for(i=0;i<len;i++) 
 			printf("%c ",wordprint[i]);
 
-		
-
 }
 
