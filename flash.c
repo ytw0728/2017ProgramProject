@@ -1,5 +1,14 @@
 #include "SSUpreme.h"
-void flashcard_menu(void){
+
+
+extern int funcStat;   
+extern int programStat;
+extern Wordbook* head; 
+extern int wordbookCNT;
+
+
+
+void flashcard_nenu(void){
 	int type;
 	int stop;
 	char *day;
