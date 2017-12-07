@@ -56,6 +56,7 @@ int menu(void)
 				makeDic(wordbookCNT+1);
 				break;
 			case 2:
+                
 				break;
 			case 3:
 				ins1 = userInputN("파일명(일차) : ", 1);
