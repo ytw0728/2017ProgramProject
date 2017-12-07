@@ -43,3 +43,10 @@ void hangman_menu(void);
 int hangman(Wordbook *now,int WbDay);
 int paint_hang(int );
 void paint_frame( char wordprint[], int len);
+
+//	flash.c
+void flashcard_menu(void);
+void flashcard(Wordbook *now,int type,int WbDay,int stop);
+
+
+
