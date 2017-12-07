@@ -1,4 +1,4 @@
-../flash.c: In function ‘flashcard_nenu’:
+../flash.c: In function ‘flashcard_menu’:
 ../flash.c:17:7: warning: implicit declaration of function ‘userInputN’ [-Wimplicit-function-declaration]
   stop=userInputN(0,"단어를 반복출력할 시간을 입력하세요:",1); 
        ^

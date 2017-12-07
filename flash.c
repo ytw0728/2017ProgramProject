@@ -8,7 +8,7 @@ extern int wordbookCNT;
 
 
 
-void flashcard_nenu(void){
+void flashcard_menu(void){
 	int type;
 	int stop;
 	char *day;
