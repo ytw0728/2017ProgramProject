@@ -1,5 +1,5 @@
 #include "SSUpreme.h"
-
+#include <windows.h>
 
 extern int funcStat;   
 extern int programStat;
@@ -14,15 +14,19 @@ void flashcard_menu(void){
 	char *day;
 	int WbDay;
 	Wordbook *now = (Wordbook*)malloc(sizeof(Wordbook));
-	stop=userInputN(0,"단어를 반복출력할 시간을 입력하세요:",1);	
+	stop=userInputN("단어를 반복출력할 시간을 입력하세요:",1);	
+	printf("check\n");
 	day=userInputS(0,"파일명(일차):",1);
+	printf("check\n");
 	WbDay=atoi(day);
 	now=getNthWbPtr(WbDay);
-	type=userInputN(0,"출력방식(알파벳 순서대로:1, 무작위:2)",1);
+	type=userInputN("출력방식(알파벳 순서대로:1, 무작위:2)",1);
+	printf("check\n");
 	flashcard(now,type,WbDay,stop);
 }
 
 void flashcard(Wordbook *now,int type,int WbDay,int stop){
+	printf("%d %d",WbDay,stop);
 	char *day=now->id;
 	int len= WListLen(now->id);
 	int i,j;
@@ -46,11 +50,11 @@ void flashcard(Wordbook *now,int type,int WbDay,int stop){
 	for(i=0;i<len;i++){
 		Word *Wnow=getNthWPtr(WbDay,question[i]);
 		printf("%s->",Wnow->eng);
-		sleep(stop*100);
+		Sleep(stop*1000);
 		for(j=0;j<3;j++){
 			if(Wnow->korDef[j]!=NULL)
 				printf("%s",Wnow->korDef[j]);
-			sleep(stop*100);
+			Sleep(stop*1000);
 		}
 	}
 }
