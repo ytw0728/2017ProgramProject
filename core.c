@@ -45,12 +45,11 @@ int writeWbFILE( Wordbook* node /* struct node to write on file */); //funcCode 
 
 	while( now != NULL ){
  		printf("%s.dic\n", now->id );
-		if( now->wHead == NULL ) printf("123");
  		Word* wordNow = now->wHead;
- 		/*while( wordNow != NULL ){
+ 		while( wordNow != NULL ){
  			printf("%s %s %s %s\n", wordNow->eng, wordNow->korDef[0], wordNow->korDef[1], wordNow->korDef[2]);
  			wordNow = wordNow->next;
- 		}*/
+ 		}
  		printf("\n");
 
 		now = now->next;
@@ -61,7 +60,7 @@ int main(){
 
 		init();
 
-		//printAllWord();
+		// printAllWord();
 
 		while( programStat ){
 				funcRoute();
@@ -258,6 +257,7 @@ int addWbList( Wordbook* newNode ){ // funcCode = 120 // insert new wordbook nod
 	}
 
 	if( !err ) wordbookCNT++;
+
 	return err;
 }
 
