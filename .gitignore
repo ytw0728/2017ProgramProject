@@ -7,4 +7,4 @@ result/*.out
 *.o
 Object/*.o
 
-result/log/*
+result/log/*.log
