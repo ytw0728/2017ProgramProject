@@ -16,6 +16,10 @@
 ../hangman.c:61:12: warning: assignment makes pointer from integer without a cast [enabled by default]
    userinput=userInputS(1,"입력 : ", 1);
             ^
+../kijeong.c: In function ‘menu’:
+../kijeong.c:76:21: warning: ‘gets’ is deprecated (declared at /usr/include/stdio.h:638) [-Wdeprecated-declarations]
+                     gets(buf);
+                     ^
 ../machugi.c: In function ‘machugi_menu’:
 ../machugi.c:19:6: warning: assignment makes pointer from integer without a cast [enabled by default]
   day = userInputS(0, "파일명(일차) : ", 1);

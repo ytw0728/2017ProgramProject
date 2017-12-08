@@ -1,6 +1,6 @@
 #include "SSUpreme.h"
 
-#define FUNCNUM 5	
+#define FUNCNUM 5
 #define STRBUF 1024
 #define FILENAMEBUF 20
 

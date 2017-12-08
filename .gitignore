@@ -8,3 +8,4 @@ result/*.out
 Object/*.o
 
 result/log/*.log
+result/log/build.log
