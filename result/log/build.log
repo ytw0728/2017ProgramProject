@@ -1,5 +1,21 @@
-../flash.c:2:21: fatal error: windows.h: 그런 파일이나 디렉터리가 없습니다
-compilation terminated.
+../flash.c: In function ‘flashcard_menu’:
+../flash.c:17:7: warning: implicit declaration of function ‘userInputN’ [-Wimplicit-function-declaration]
+  stop=userInputN("단어를 반복출력할 시간을 입력하세요:",1); 
+       ^
+../flash.c:19:6: warning: implicit declaration of function ‘userInputS’ [-Wimplicit-function-declaration]
+  day=userInputS(0,"파일명(일차):",1);
+      ^
+../flash.c:19:5: warning: assignment makes pointer from integer without a cast [-Wint-conversion]
+  day=userInputS(0,"파일명(일차):",1);
+     ^
+../flash.c: In function ‘flashcard’:
+../flash.c:32:11: warning: implicit declaration of function ‘WListLen’ [-Wimplicit-function-declaration]
+  int len= WListLen(now->id);
+           ^
+../flash.c:58:7: error: ‘j’ undeclared (first use in this function)
+   for(j=0;j<3;j++){
+       ^
+../flash.c:58:7: note: each undeclared identifier is reported only once for each function it appears in
 ../hangman.c: In function ‘hangman_menu’:
 ../hangman.c:16:8: warning: implicit declaration of function ‘userInputS’ [-Wimplicit-function-declaration]
   day = userInputS(0, "파일명(일차) : ", 1);
@@ -14,7 +30,7 @@ compilation terminated.
 ../hangman.c:46:20: warning: passing argument 1 of ‘getNthWPtr’ makes integer from pointer without a cast [-Wint-conversion]
   word = getNthWPtr(now->id,4);
                     ^
-../SSUpreme.h:30:7: note: expected ‘int’ but argument is of type ‘char *’
+../SSUpreme.h:31:7: note: expected ‘int’ but argument is of type ‘char *’
  Word* getNthWPtr(int Wbn, int Wn);
        ^
 ../hangman.c:60:3: warning: implicit declaration of function ‘gotoxy’ [-Wimplicit-function-declaration]
@@ -60,12 +76,9 @@ compilation terminated.
 ../machugi.c:49:11: warning: implicit declaration of function ‘WListLen’ [-Wimplicit-function-declaration]
   int len= WListLen(now->id);
            ^
-../machugi.c:55:9: warning: implicit declaration of function ‘time’ [-Wimplicit-function-declaration]
-   srand(time(NULL));
-         ^
-../machugi.c:77:6: warning: assignment makes pointer from integer without a cast [-Wint-conversion]
+../machugi.c:80:6: warning: assignment makes pointer from integer without a cast [-Wint-conversion]
    ans=userInputS(0,"", 1);
       ^
-../machugi.c:81:11: warning: implicit declaration of function ‘getch’ [-Wimplicit-function-declaration]
+../machugi.c:84:11: warning: implicit declaration of function ‘getch’ [-Wimplicit-function-declaration]
     while( getch() != '\n' ) ;
            ^

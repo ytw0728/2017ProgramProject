@@ -1,6 +1,5 @@
 #include "SSUpreme.h"
-#include <windows.h>
-
+void flashcard(Wordbook *,int,int,int);
 extern int funcStat;   
 extern int programStat;
 extern Wordbook* head; 
@@ -15,24 +14,28 @@ void flashcard_menu(void){
 	int WbDay;
 	Wordbook *now = (Wordbook*)malloc(sizeof(Wordbook));
 	stop=userInputN("단어를 반복출력할 시간을 입력하세요:",1);	
-	printf("check\n");
+	printf("%d\n",stop);
 	day=userInputS(0,"파일명(일차):",1);
-	printf("check\n");
+	printf("%s\n",day);
 	WbDay=atoi(day);
 	now=getNthWbPtr(WbDay);
 	type=userInputN("출력방식(알파벳 순서대로:1, 무작위:2)",1);
-	printf("check\n");
+	printf("%d\n",type);
 	flashcard(now,type,WbDay,stop);
 }
 
 void flashcard(Wordbook *now,int type,int WbDay,int stop){
-	printf("%d %d",WbDay,stop);
+	int i;
+	int question[31];
 	char *day=now->id;
 	int len= WListLen(now->id);
-	int i,j;
-	int question[31];
-	for(i=0;i<len;i++)
+	
+	printf("check\n");
+	printf("%d %d\n",WbDay,stop);
+	for(int i=0;i<len;i++){
 		question[i]=i;
+		printf("%d",question[i]);
+	}	
 	question[i]=-1;
 	if(type==2){
 		srand(time(NULL));
@@ -50,11 +53,12 @@ void flashcard(Wordbook *now,int type,int WbDay,int stop){
 	for(i=0;i<len;i++){
 		Word *Wnow=getNthWPtr(WbDay,question[i]);
 		printf("%s->",Wnow->eng);
-		Sleep(stop*1000);
+		sleep(stop*1000);
 		for(j=0;j<3;j++){
-			if(Wnow->korDef[j]!=NULL)
+			if(Wnow->korDef[j]!=NULL){
 				printf("%s",Wnow->korDef[j]);
-			Sleep(stop*1000);
+				sleep(stop*1000);
+			}
 		}
 	}
 }
@@ -62,4 +66,4 @@ void flashcard(Wordbook *now,int type,int WbDay,int stop){
 
 
 
-	
+
