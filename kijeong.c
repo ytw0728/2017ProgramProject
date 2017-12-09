@@ -67,12 +67,14 @@ int menu(void)
                     printf("계속하려면 q를 입력해주세요...\n");
                     while( ( breakC = getch() ) != 'q' && breakC != 'Q' );
                     break;
-                }
-                
+				}
+
+               	tmpWb = getNthWbPtr(ins1); 
+				Word* tmpHead = tmpWb->wHead;
+
                 while(1)
                 {
                     Word* tmpW = (Word*)malloc(sizeof(Word));
-                    
                     gets(buf);
                     
                     if(strcmp(buf, ".add") == 0)
@@ -93,7 +95,7 @@ int menu(void)
                             strcpy(tmpW->korDef[i] , "NULL");
                     }
                     tmpW->next = NULL;
-                    insertWList(tmpWb->wHead, tmpW);
+                   	tmpHead= insertWList(tmpHead, tmpW);
                 }
                 break;
             case 3:
