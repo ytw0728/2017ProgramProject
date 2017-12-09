@@ -43,7 +43,8 @@ int hangman(Wordbook *now,int WbDay)
 	printf("%c\n",66 );
 	//printf("%s\n", now->id);
 	Word *word;
-	word = getNthWPtr(now->id,4);
+	/////kijeong adjusted from word = getNthWPtr(now->id, 4);
+	word = getNthWPtr(atoi(now->id),4);
 
 	printf("%c\n",67 );
 	system("clear");

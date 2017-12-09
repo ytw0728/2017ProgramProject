@@ -94,7 +94,7 @@ int funcRoute(){ // funcCode = 102
 
 int getch(void){  
 	int ch;  
-	struct termios buf;  
+	/*struct termios buf;  
 	struct termios save;  
 
 	tcgetattr(0, &save);  
@@ -105,6 +105,7 @@ int getch(void){
 	tcsetattr(0, TCSAFLUSH, &buf);  
 	ch = getchar();  
 	tcsetattr(0, TCSAFLUSH, &save);  
+	*/
 	return ch;  
 }
 
