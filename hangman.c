@@ -31,7 +31,7 @@ int hangman(Wordbook *now,int WbDay)
 	char breakC;
 	char* day =now->id;
 	int failcount=-1;
-	int len,flag,errorflag,i;
+	int len,flag,errorflag, i;
 	errorflag=0;
 	char* userinput;
 	char wordprint[15]={0};
@@ -44,11 +44,11 @@ int hangman(Wordbook *now,int WbDay)
 
 	word = getNthWPtr(WbDay,Nth);
 	len=strlen(word->eng);
-	for (int i = 0; i < len; i++)
+	for (i = 0; i < len; i++)
 	{
 		wordprint[i]=95;
 	}
-	printf("%s\n",&word->eng );
+	printf("%s\n", word->eng );
 
 	printf("%c\n",67 );
 	system("clear");

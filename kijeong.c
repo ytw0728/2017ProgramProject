@@ -89,47 +89,10 @@ int menu(void)
                 break;
             case 2:
                 ins1 = userInputN("파일명(일차) : ", 1);
-<<<<<<< HEAD
-                if(ins1 > wordbookCNT)
-                {
-                    printf("해당 단어장이 존재하지 않습니다.");
-                    printf("계속하려면 q를 입력해주세요...\n");
-                    while( ( breakC = getch() ) != 'q' && breakC != 'Q' );
-                    break;
-                }
-                
-                while(1)
-                {
-                    Word* tmpW = (Word*)malloc(sizeof(Word));
-                    
-                    gets(buf);
-                    
-                    
-                    if(strcmp(buf, ".add") == 0)
-                    {
-                        writeWbFILE(tmpWb);
-                        break;
-                    }
-                    
-                    ptr = strtok(buf, " ");
-                    strcpy(tmpW->eng, ptr);
-                    
-                    for(i = 0; i < 3; i++)
-                    {
-                        ptr =  strtok(NULL, " ");
-                        if(ptr != NULL)
-                            strcpy(tmpW->korDef[i], ptr);
-                        else
-                            strcpy(tmpW->korDef[i] , "NULL");
-                    }
-                    tmpW->next = NULL;
-                    insertWList(tmpWb->wHead, tmpW);
-                }
-=======
+
 				insert_Dic(ins1);
                 printf("계속하려면 q를 입력해주세요...\n");
                 while( ( breakC = getch() ) != 'q' && breakC != 'Q' );
->>>>>>> a0ee1a2795b84e0a5a798c295ca65783edd05433
                 break;
             case 3:
                 ins1 = userInputN("파일명(일차) : ", 1);

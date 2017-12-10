@@ -1,11 +1,13 @@
 #include "SSUpreme.h"
 
-void flashcard(Wordbook *,int,int,int);
->>>>>>> a0ee1a2795b84e0a5a798c295ca65783edd05433
 extern int funcStat;   
 extern int programStat;
 extern Wordbook* head; 
 extern int wordbookCNT;
+
+
+
+
 void delay_time(int stop){
 	time_t start_time=0,end_time=0;
 	start_time=clock();
@@ -55,7 +57,7 @@ void flashcard(Wordbook *now,int type,int WbDay,int stop){
 			question[random2]=temp;
 		}
 	}
-	for(int i=1;i<=len;i++){
+	for(i=1;i<=len;i++){
 		Word *Wnow=getNthWPtr(WbDay,question[i]);
 		if(question[i]==-1){
 			printf("모든단어를 출력했습니다.\n");
