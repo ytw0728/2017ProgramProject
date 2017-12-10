@@ -1,5 +1,5 @@
 #include "SSUpreme.h"
-#include <windows.h>
+
 
 extern int funcStat;   
 extern int programStat;
@@ -50,11 +50,11 @@ void flashcard(Wordbook *now,int type,int WbDay,int stop){
 	for(i=0;i<len;i++){
 		Word *Wnow=getNthWPtr(WbDay,question[i]);
 		printf("%s->",Wnow->eng);
-		Sleep(stop*1000);
+		sleep(stop*1000);
 		for(j=0;j<3;j++){
 			if(Wnow->korDef[j]!=NULL)
 				printf("%s",Wnow->korDef[j]);
-			Sleep(stop*1000);
+			sleep(stop*1000);
 		}
 	}
 }

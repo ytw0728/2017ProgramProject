@@ -75,6 +75,7 @@ int menu(void)
                     
                     gets(buf);
                     
+                    
                     if(strcmp(buf, ".add") == 0)
                     {
                         writeWbFILE(tmpWb);
