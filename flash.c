@@ -63,7 +63,7 @@ void flashcard(Wordbook *now,int type,int WbDay,int stop){
 			printf("모든단어를 출력했습니다.\n");
 			break;
 		}
-		printf("%d %s->",question[i],Wnow->eng);
+		printf("%s->",Wnow->eng);
 		//delay_time(stop);
 		fflush(stdout);
 		sleep(stop);
