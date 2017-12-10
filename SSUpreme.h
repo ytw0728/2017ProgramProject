@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-//#include <termio.h>
+#include <termio.h>
 #include <time.h>
 
 
