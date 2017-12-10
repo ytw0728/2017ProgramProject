@@ -48,15 +48,13 @@ int hangman(Wordbook *now,int WbDay)
 	{
 		wordprint[i]=95;
 	}
-	printf("%s\n", word->eng );
 
-	printf("%c\n",67 );
 	system("clear");
-	printf("%c\n",68 );
+	
 	while(strcmp(wordprint,word->eng)!=0){
-		printf("%c\n",70);
+	
 		system("clear");
-		printf("%c\n",69 );
+	
 		flag = 0;
 
 		paint_hang(failcount);
