@@ -11,10 +11,21 @@ extern int wordbookCNT;
 Wordbook* getNthWbPtr(int n)
 {
     Wordbook* now = head;
+	if(now == NULL)
+	{
+		printf("HEAD가 존재하지 않습니다\n");
+		return NULL;
+	}
+	if(wordbookCNT < n)
+	{
+		printf("%d.dic가 존재하지 않습니다\n", n);
+		return NULL;
+	}
     int i;
     for(i = 0; i < n - 1; i++)
     {
-        now = now->next;
+		if(now ->next != NULL)
+        	now = now->next;
     }
     
     return now;
@@ -23,25 +34,39 @@ Wordbook* getNthWbPtr(int n)
 //return Wnth Word* from Wbnth WordBook.
 Word* getNthWPtr(int Wbn, int Wn)
 {
-    Word* ptr = getNthWbPtr(Wbn)->wHead;
+	Wordbook* tmpWb;
+    Word* ptr;
+
+    tmpWb = getNthWbPtr(Wbn);
+	if(tmpWb == NULL)
+		return NULL;
+
+	ptr = tmpWb->wHead;
+	if(ptr == NULL)
+	{
+		printf("%d.dic에 head가 존재하지 않습니다. \n", Wbn);
+		return NULL;
+	}
+
     int i;
     for(i = 0; i < Wn - 1; i++)
     {
-        ptr = ptr->next;
+		if(ptr != NULL)
+	        ptr = ptr->next;
     }
     return ptr;
 }
 
 int menu(void)
 {
-    int choice = 0;
-    int ins1;
-    char buf[STRBUF];
-    char breakC;
-    Wordbook* tmpWb;
-    Word* tmpW;
-    int i;
-    char* ptr;
+    int 		choice = 0;
+    int 		ins1;
+    char 		buf[STRBUF];
+    char 		breakC;
+    Wordbook* 	tmpWb;
+    Word* 		tmpW;
+    int 		i;
+    char*	 	ptr;
     
     while(1)
     {
@@ -58,63 +83,18 @@ int menu(void)
         {
             case 1:
                 makeDic(wordbookCNT+1);
+                printf("계속하려면 q를 입력해주세요...\n");
+                while( ( breakC = getch() ) != 'q' && breakC != 'Q' );
                 break;
             case 2:
                 ins1 = userInputN("파일명(일차) : ", 1);
-                if(ins1 > wordbookCNT)
-                {
-                    printf("해당 단어장이 존재하지 않습니다.");
-                    printf("계속하려면 q를 입력해주세요...\n");
-                    while( ( breakC = getch() ) != 'q' && breakC != 'Q' );
-                    break;
-				}
-
-               	tmpWb = getNthWbPtr(ins1); 
-				Word* tmpHead = tmpWb->wHead;
-
-                while(1)
-                {
-                    Word* tmpW = (Word*)malloc(sizeof(Word));
-                    gets(buf);
-                    
-                    if(strcmp(buf, ".add") == 0)
-                    {
-                        writeWbFILE(tmpWb);
-                        break;
-                    }
-                    
-                    ptr = strtok(buf, " ");
-                    strcpy(tmpW->eng, ptr);
-                    
-                    for(i = 0; i < 3; i++)
-                    {
-                        ptr =  strtok(NULL, " ");
-                        if(ptr != NULL)
-                            strcpy(tmpW->korDef[i], ptr);
-                        else
-                            strcpy(tmpW->korDef[i] , "NULL");
-                    }
-                    tmpW->next = NULL;
-                   	tmpHead= insertWList(tmpHead, tmpW);
-                }
+				insert_Dic(ins1);
+                printf("계속하려면 q를 입력해주세요...\n");
+                while( ( breakC = getch() ) != 'q' && breakC != 'Q' );
                 break;
             case 3:
                 ins1 = userInputN("파일명(일차) : ", 1);
-                tmpWb = getNthWbPtr(ins1);
-                tmpW = tmpWb->wHead;
-                
-                if(tmpW == NULL)
-                {
-                    printf("단어장에 단어가 존재하지 않습니다.\n");
-                    printf("계속하려면 q를 입력해주세요...\n");
-                    while( ( breakC = getch() ) != 'q' && breakC != 'Q' );
-                    break;
-                }
-                while(tmpW != NULL)
-                {
-                    printf("%s %s %s %s\n", tmpW->eng, tmpW->korDef[0], tmpW->korDef[1], tmpW->korDef[2]);
-                    tmpW = tmpW->next;
-                }
+				print_Dic(ins1);
                 printf("계속하려면 q를 입력해주세요...\n");
                 while( ( breakC = getch() ) != 'q' && breakC != 'Q' );
                 break;
@@ -132,7 +112,74 @@ int menu(void)
         }
     }
 }
+int insert_Dic(int dicNum)
+{
+	Wordbook* 	tmpWb;
+	Word* 		tmpHead;
+	Word* 		tmpW;
+	char*		ptr;
+	char		buf[STRBUF];
+	int			i;
+    if(dicNum > wordbookCNT)
+	{
+		printf("%d.dic 파일이 존재하지 않습니다.\n", dicNum);
+   		return -1; 
+	}
 
+    tmpWb = getNthWbPtr(dicNum); 
+	if(tmpWb == NULL)
+		return -1;
+	tmpHead = tmpWb->wHead;
+
+    while(1)
+    {
+   	  tmpW = (Word*)malloc(sizeof(Word));
+   	  strcpy(buf, userInputS(0, "", 1));
+
+	  if(strcmp(buf, ".add") == 0)
+	  {
+    	writeWbFILE(tmpWb);
+		return 1;	
+	  }		
+	  ptr = strtok(buf, " ");
+	  strcpy(tmpW->eng, ptr);
+
+	  for(i = 0; i < 3; i++)
+	  {
+	 	ptr = strtok(NULL, " ");
+		if(ptr != NULL)
+			strcpy(tmpW->korDef[i], ptr);
+		else
+	  		strcpy(tmpW->korDef[i], "");
+	  }
+	  tmpW->next = NULL;
+	  tmpWb->wHead = insertWList(tmpWb->wHead, tmpW);
+	}
+	return -1;
+}
+int print_Dic(int dicNum)
+{
+	Wordbook* 	tmpWb;
+	Word* 		tmpW;
+	char		buf[STRBUF];
+    tmpWb = getNthWbPtr(dicNum);
+	if(tmpWb == NULL)
+		return -1;
+
+   	tmpW = tmpWb->wHead;
+    if(tmpW == NULL)
+    {
+    	printf("단어장에 단어가 존재하지 않습니다.\n");
+		return -1;
+    }
+
+    while(tmpW != NULL)
+    {
+        printf("%s %s %s %s\n", tmpW->eng, tmpW->korDef[0], tmpW->korDef[1], tmpW->korDef[2]);
+        tmpW = tmpW->next;
+    }
+	return 1;
+}
 int makeDic(int dicNum)
 {
     char buf[5];
@@ -144,6 +191,8 @@ int makeDic(int dicNum)
     Wbnew->wHead = NULL;
     addWbList(Wbnew);
     writeWbFILE(Wbnew);
+
+	printf("%d.dic 파일이 추가되었습니다.\n", dicNum);
 }
 
 //print all .dic file

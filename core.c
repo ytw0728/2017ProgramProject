@@ -94,6 +94,7 @@ int funcRoute(){ // funcCode = 102
 
 int getch(void){  
 	int ch;  
+	ch = getchar();
 	/*struct termios buf;  
 	struct termios save;  
 
