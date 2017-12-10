@@ -1,11 +1,20 @@
 #include "SSUpreme.h"
+#include <stdio_ext.h>
 void flashcard(Wordbook *,int,int,int);
 extern int funcStat;   
 extern int programStat;
 extern Wordbook* head; 
 extern int wordbookCNT;
-
-
+void delay_time(int stop){
+	time_t start_time=0,end_time=0;
+	start_time=clock();
+	while(1){
+		end_time=clock();
+		if(((int)(end_time-start_time)/(CLOCKS_PER_SEC))==stop)
+			break;
+	}
+}	
+	
 
 void flashcard_menu(void){
 	int type;
@@ -27,10 +36,9 @@ void flashcard(Wordbook *now,int type,int WbDay,int stop){
 	char *day=now->id;
 	int len= WListLen(now->id);
 	
-	printf("check\n");
-	for(i=0;i<len;i++){
+	for(i=1;i<=len;i++){
 		question[i]=i;
-		printf("%d",question[i]);
+		//printf("%d",question[i]);
 	}	
 	question[i]=-1;
 	if(type==2){
@@ -46,17 +54,28 @@ void flashcard(Wordbook *now,int type,int WbDay,int stop){
 			question[random2]=temp;
 		}
 	}
-	for(i=0;i<len;i++){
+	for(int i=1;i<=len;i++){
 		Word *Wnow=getNthWPtr(WbDay,question[i]);
-		printf("%s->",Wnow->eng);
-		sleep(stop*1000);
+		if(question[i]==-1){
+			printf("모든단어를 출력했습니다.\n");
+			break;
+		}
+		printf("%d %s->",question[i],Wnow->eng);
+		//delay_time(stop);
+		fflush(stdout);
+		sleep(stop);
 		for(j=0;j<3;j++){
 			if(Wnow->korDef[j]!=NULL){
 				printf("%s",Wnow->korDef[j]);
-				sleep(stop*1000);
+				fflush(stdout);
+				sleep(stop);
+				//delay_time(stop);
 			}
+			sleep(stop*1000);
 		}
+		printf("\n");
 	}
+
 }
 
 
