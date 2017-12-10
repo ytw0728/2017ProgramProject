@@ -29,30 +29,32 @@ void hangman_menu(void){
 int hangman(Wordbook *now,int WbDay) 
 {	
 	char breakC;
-	char *day = now ->id;
+	char* day =now->id;
 	int failcount=-1;
-	int len,flag,errorflag,i;
+	int len,flag,errorflag, i;
 	errorflag=0;
-	len = WListLen(now->id);
 	char* userinput;
 	char wordprint[15]={0};
-	printf("%c\n", 65);
-	for(i=0;i<len;i++)
-		wordprint[i]=95;
+	int Nth=rand()%30;
+	if (Nth==0)
+		Nth=Nth+30;
 
-	printf("%c\n",66 );
 	//printf("%s\n", now->id);
 	Word *word;
-	/////kijeong adjusted from word = getNthWPtr(now->id, 4);
-	word = getNthWPtr(atoi(now->id),4);
 
-	printf("%c\n",67 );
+	word = getNthWPtr(WbDay,Nth);
+	len=strlen(word->eng);
+	for (i = 0; i < len; i++)
+	{
+		wordprint[i]=95;
+	}
+
 	system("clear");
-	printf("%c\n",68 );
+	
 	while(strcmp(wordprint,word->eng)!=0){
-		printf("%c\n",70);
+	
 		system("clear");
-		printf("%c\n",69 );
+	
 		flag = 0;
 
 		paint_hang(failcount);
