@@ -1,5 +1,9 @@
 #include "SSUpreme.h"
+<<<<<<< HEAD
 void flashcard(Wordbook *,int,int,int);
+=======
+
+>>>>>>> KiJeong
 extern int funcStat;   
 extern int programStat;
 extern Wordbook* head; 
@@ -53,8 +57,12 @@ void flashcard(Wordbook *now,int type,int WbDay,int stop){
 		for(j=0;j<3;j++){
 			if(Wnow->korDef[j]!=NULL){
 				printf("%s",Wnow->korDef[j]);
+<<<<<<< HEAD
 				sleep(stop*1000);
 			}
+=======
+			sleep(stop*1000);
+>>>>>>> KiJeong
 		}
 	}
 }
