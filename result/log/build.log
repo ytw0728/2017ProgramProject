@@ -1,7 +1,0 @@
-../kijeong.c: In function ‘menu’:
-../kijeong.c:93:5: warning: implicit declaration of function ‘insert_Dic’ [-Wimplicit-function-declaration]
-     insert_Dic(ins1);
-     ^~~~~~~~~~
-../kijeong.c:99:5: warning: implicit declaration of function ‘print_Dic’ [-Wimplicit-function-declaration]
-     print_Dic(ins1);
-     ^~~~~~~~~

@@ -74,11 +74,14 @@ int hangman(Wordbook *now,int WbDay)
 		gotoxy(0,20);
 		userinput=userInputS(1,"입력 : ", 1);
 		
-		while(122<*userinput || 97>*userinput)
+		while( !( 122 >= *userinput && 97 <= *userinput ) && !( 'A' <= *userinput && *userinput <= 'Z' ) )
 		{	
 			printf("잘못 입력하셨습니다. 알파벳을 입력해주세요\n");
 			userinput=userInputS(1,"입력 : ", 1);
 		}
+
+		if( *userinput < 'a' ) *userinput += 'a' - 'A';
+		
 		for(i=0;i<len;i++)
 		{
 			if(*userinput==word->eng[i]) {
