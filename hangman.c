@@ -29,22 +29,25 @@ void hangman_menu(void){
 int hangman(Wordbook *now,int WbDay) 
 {	
 	char breakC;
-	char *day = now ->id;
+	char day =now->id;
 	int failcount=-1;
 	int len,flag,errorflag,i;
 	errorflag=0;
-	len = WListLen(now->id);
 	char* userinput;
 	char wordprint[15]={0};
-	printf("%c\n", 65);
-	for(i=0;i<len;i++)
-		wordprint[i]=95;
+	int Nth=rand()%30;
+	if (Nth==0)
+		Nth=Nth+30;
 
-	printf("%c\n",66 );
 	//printf("%s\n", now->id);
 	Word *word;
-	word = getNthWPtr(now->id,4);
-
+	word = getNthWPtr(WbDay,Nth);
+	len=strlen(word);
+	for (int i = 0; i < len; i++)
+	{
+		wordprint[i]=95;
+	}
+	printf("%s\n",&word->eng );
 	printf("%c\n",67 );
 	system("clear");
 	printf("%c\n",68 );
