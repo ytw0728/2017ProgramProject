@@ -8,14 +8,15 @@ extern int wordbookCNT;
 
 void hangman_menu(void){
 	int type;
-	char* day;
 	FILE *day_fp;
 	Wordbook *now = (Wordbook*)malloc(sizeof(Wordbook));
-
-
-	day = userInputS(0, "파일명(일차) : ", 1);
-
-	int WbDay=atoi(day);
+	
+	int WbDay=userInputN("파일명(일차) : ",1);
+	while(WbDay > wordbookCNT || WbDay <1)
+	{
+		printf("단어장 개수 범위 안의 숫자를 입력해주세요\n");
+		WbDay=userInputN("파일명(일차) : ",1);
+	}
 	now = getNthWbPtr(WbDay);
 
 	hangman(now,WbDay);
@@ -39,10 +40,19 @@ int hangman(Wordbook *now,int WbDay)
 	if (Nth==0)
 		Nth=Nth+30;
 
-	//printf("%s\n", now->id);
+
+
 	Word *word;
 
 	word = getNthWPtr(WbDay,Nth);
+	int NthDef=rand()%3;
+	
+	if (NthDef==2 && word->korDef[2]=="NULL")
+		NthDef=rand()%2;
+	else if (NthDef==1 && word->korDef[1]=="NULL")
+			NthDef=0;
+	else
+		NthDef=0;
 	len=strlen(word->eng);
 	for (i = 0; i < len; i++)
 	{
@@ -59,10 +69,16 @@ int hangman(Wordbook *now,int WbDay)
 
 		paint_hang(failcount);
 		paint_frame(wordprint, len);
-		
+		gotoxy(0,10);
+		printf("힌트 : %s\n",word->korDef[NthDef] );
 		gotoxy(0,20);
 		userinput=userInputS(1,"입력 : ", 1);
-
+		
+		while(122<*userinput || 97>*userinput)
+		{	
+			printf("잘못 입력하셨습니다. 알파벳을 입력해주세요\n");
+			userinput=userInputS(1,"입력 : ", 1);
+		}
 		for(i=0;i<len;i++)
 		{
 			if(*userinput==word->eng[i]) {
@@ -84,6 +100,8 @@ int hangman(Wordbook *now,int WbDay)
 
 
 			printf("메뉴로 돌아가기 위해 q를 입력해주세요...\n");
+			gotoxy(0,10);
+			printf("힌트 : %s\n",word->korDef[NthDef] );
 			while( ( breakC = getch() ) != 'q' && breakC != 'Q' ) ;
 			return 0;
 		}
@@ -130,7 +148,7 @@ void paint_frame(char wordprint[], int len){
 
 		gotoxy(0,8);
 		printf("단어를 맞추어보세요!\n");
-		printf("단어에 들어갈 알파벳을 유추해 입력해주세요!");
+		printf("단어에 들어갈 알파벳을 유추해 입력해주세요!\n");
 		gotoxy(0,17);
 		
 		for(i=0;i<len;i++) 
