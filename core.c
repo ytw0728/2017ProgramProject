@@ -1,6 +1,6 @@
 #include "SSUpreme.h"
 
-#define FUNCNUM 5	
+#define FUNCNUM 5
 #define STRBUF 1024
 #define FILENAMEBUF 20
 
@@ -12,29 +12,6 @@ int programStat = 1; // init : 1, ready to end : -1, end : 0, keyboard input : 1
 Wordbook* head = NULL; // Wordbook head pointer;
 int wordbookCNT = 0; // the number of wordbook in list
 
-// default functions
-void switchByErr(int errCode); // main error handling
-void gotoxy( int x /* column */, int y /* row */);	// move screen cursor 
-int init(); // funcCode = 101 // return ( error: -1 , no error: 0 )
-int funcRoute(); // funcCode = 102 // start functions by user input
-
-
-// user input functions
-int getch(void); // for invisible input
-int userInputN( char* message /* msg to print for input */, int visible); // funcCode = 103 // return user's Input, Number | return ( error : -1, no error : positive Int )
-char* userInputS( int type /* length of string [ 0 / n ] */, char* message /* msg to print for input*/, int visible /* visibility of user input [ true / false ] */); // funcCode = 104 // return user's Input, String[Character array] ( type | nLetter( 1~n) : n, dynamic : 0 ) korean -> *2 | return ( error : null, no error : char pointer )
-
-
-// linked list and file functions
-int initWbList(); // funcCode = 199 // init word list
-int addWbList( Wordbook* newNode /* struct node to add */ ); // funcCode = 120 // add new wordbook node ( end of list )
-Word* insertWList( Word* head /* wHead of wordbook */, Word* newNode /* struct node to add */); // funcCode = 121 //  insert new wordbook node ( anywhere of list )
-
-int WListLen(char* id); // funcCode = 130  // return the length of word list in (id).dic wordbook
-
-int openWbFILE( char* id /* id string of wordbook ex) "1", "2", etc. */); // funcCode = 110 // open wordbook file with id | (id).dic
-int writeWbFILE( Wordbook* node /* struct node to write on file */); //funcCode = 111 // clear and rewrite (id).dic wordbook file
-
 
 // testcode //
  void printAllWord(){
@@ -45,12 +22,11 @@ int writeWbFILE( Wordbook* node /* struct node to write on file */); //funcCode 
 
 	while( now != NULL ){
  		printf("%s.dic\n", now->id );
-		if( now->wHead == NULL ) printf("123");
  		Word* wordNow = now->wHead;
- 		/*while( wordNow != NULL ){
+ 		while( wordNow != NULL ){
  			printf("%s %s %s %s\n", wordNow->eng, wordNow->korDef[0], wordNow->korDef[1], wordNow->korDef[2]);
  			wordNow = wordNow->next;
- 		}*/
+ 		}
  		printf("\n");
 
 		now = now->next;
@@ -61,7 +37,7 @@ int main(){
 
 		init();
 
-		//printAllWord();
+		// printAllWord();
 
 		while( programStat ){
 				funcRoute();
@@ -108,7 +84,7 @@ int funcRoute(){ // funcCode = 102
 
 		switch( n ){
 				case 1 : machugi_menu(); break;
-				case 2 : break;
+				case 2 : flashcard_menu(); break;
 				case 3 : hangman_menu(); break;
 				case 4 : menu(); break;
 				case 5 : programStat = 0; break;
@@ -206,7 +182,7 @@ char* userInputS( int type , char* message, int visible){// funcCode = 104
 		}
 
 
-		if( err ) return NULL; 
+		if( err ) return NULL;
 		if( re ){
 			printf("[ 다시 입력해주세요. (최대 %dByte ) ]\n", type == 0 ? STRBUF : type);
 			while( c = func() ) if( c == '\n' || c == EOF ) break;
@@ -258,6 +234,7 @@ int addWbList( Wordbook* newNode ){ // funcCode = 120 // insert new wordbook nod
 	}
 
 	if( !err ) wordbookCNT++;
+
 	return err;
 }
 

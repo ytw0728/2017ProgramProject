@@ -7,4 +7,5 @@ result/*.out
 *.o
 Object/*.o
 
-result/log/*
+result/log/*.log
+result/log/build.log

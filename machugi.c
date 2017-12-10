@@ -64,6 +64,8 @@ void machugi(int type,Wordbook *now,int WbDay){
 			question[random2]=temp;
 		}
 	}
+	for(int n=0;n<len;n++)
+		printf("%d",question[n]);
 
 	int cnt_q=0,cnt_c=0,cnt_ic=0;//전체,맞은,틀린문제수
 	int num=0;
@@ -72,6 +74,7 @@ void machugi(int type,Wordbook *now,int WbDay){
 	int q_num=0;//퀴즈번호
 	while(1){
 		Word * Wnow=getNthWPtr(WbDay,question[q_num]);
+		printf("%d",question[q_num]);
 		printf("%s->",Wnow->eng);
 
 		ans=userInputS(0,"", 1);

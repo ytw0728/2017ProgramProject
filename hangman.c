@@ -29,7 +29,7 @@ void hangman_menu(void){
 int hangman(Wordbook *now,int WbDay) 
 {	
 	char breakC;
-	char day =now->id;
+	char* day =now->id;
 	int failcount=-1;
 	int len,flag,errorflag,i;
 	errorflag=0;
@@ -42,7 +42,7 @@ int hangman(Wordbook *now,int WbDay)
 	//printf("%s\n", now->id);
 	Word *word;
 	word = getNthWPtr(WbDay,Nth);
-	len=strlen(word);
+	len=strlen(word->eng);
 	for (int i = 0; i < len; i++)
 	{
 		wordprint[i]=95;
@@ -135,8 +135,6 @@ void paint_frame(char wordprint[], int len){
 		
 		for(i=0;i<len;i++) 
 			printf("%c ",wordprint[i]);
-
-		
 
 }
 
