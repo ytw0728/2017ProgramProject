@@ -58,6 +58,8 @@ int writeWbFILE( Wordbook* node /* struct node to write on file */); //funcCode 
 Wordbook* getNthWbPtr(int n);
 Word* getNthWPtr(int Wbn, int Wn);
 int menu(void);
+int insert_Dic(int dicNum);
+int print_Dic(int dicNum);
 int makeDic(int dicNum);
 void print_nDic(void);
 
