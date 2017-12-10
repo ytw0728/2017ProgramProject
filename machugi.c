@@ -11,14 +11,17 @@ void machugi_menu(void){
 	int type;
 	char* day;
 	FILE *day_fp;
+	int WbDay;
 	Wordbook *now;
 
 	//printf("파일명(일차):");
 	//scanf("%s",day);
-
-	day = userInputS(0, "파일명(일차) : ", 1);
-
-	int WbDay=atoi(day);
+	while(1){
+	WbDay = userInputN( "파일명(일차) : ", 1);
+	if(WbDay==0) printf("다시입력하세요\n");
+	else break;
+	}
+	//int WbDay=atoi(day);
 	now = getNthWbPtr(WbDay);
 	//openWbFILE(now->id);
 
@@ -34,7 +37,11 @@ void machugi_menu(void){
 	 */
 
 	//scanf("%d",&type);
+	while(1){
 	type=userInputN("출력방식(알파벳  순서대로:1, 무작위:2)", 1);
+	if(type==0) printf("다시입력하세요\n");
+	else break;
+	}
 	machugi(type,now,WbDay);
 
 }
@@ -87,11 +94,23 @@ void machugi(int type,Wordbook *now,int WbDay){
 			while( getch() != '\n' ) ;
 			break;
 		}
-		if((strcmp(ans,Wnow->korDef[0])==0)||(strcmp(ans,Wnow->korDef[1])==0)||(strcmp(ans,Wnow->korDef[2])==0)){
+		int kornum=0;
+		int korcheck=0;
+		while(1){
+		if(Wnow->korDef[kornum][0]=='\0'||kornum==3)
+			break;
+		if((strcmp(ans,Wnow->korDef[kornum])==0)){
+			korcheck=1;
+			}
+		kornum++;
+		}
+		if(korcheck){
 			printf("correct!\n");
 			cnt_q++;cnt_c++;
 			q_num++;
 		}
+		
+
 		else{
 			printf("incorrect!\n");
 			cnt_q++;cnt_ic++;

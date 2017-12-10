@@ -25,11 +25,25 @@ void flashcard_menu(void){
 	char *day;
 	int WbDay;
 	Wordbook *now = (Wordbook*)malloc(sizeof(Wordbook));
-	stop=userInputN("단어를 반복출력할 시간을 입력하세요:",1);	
-	day=userInputS(0,"파일명(일차):",1);
-	WbDay=atoi(day);
+	while(1){
+	stop=userInputN("단어를 반복출력할 시간을 입력하세요:",1);
+	if(stop==0) printf("다시입력하세요\n");
+	else break;	
+	}
+	while(1){
+	WbDay=userInputN("파일명(일차):",1);
+	if(WbDay==0) printf("다시입력하세요\n");
+	else break;
+	}
+		
+		
+	//WbDay=atoi(day);
 	now=getNthWbPtr(WbDay);
+	while(1){
 	type=userInputN("출력방식(알파벳 순서대로:1, 무작위:2)",1);
+	if(type==0) printf("다시입력하세요\n");
+	else break;
+	}
 	flashcard(now,type,WbDay,stop);
 }
 
@@ -70,13 +84,14 @@ void flashcard(Wordbook *now,int type,int WbDay,int stop){
 		for(j=0;j<3;j++){
 			if(Wnow->korDef[j]!=NULL){
 				printf("%s",Wnow->korDef[j]);
-				fflush(stdout);
-				sleep(stop);
+				//fflush(stdout);
+				//sleep(stop);
 				//delay_time(stop);
 			}
-			sleep(stop*1000);
 		}
+		
 		printf("\n");
+		sleep(stop);
 	}
 
 }
