@@ -71,6 +71,7 @@ void flashcard(Wordbook *now,int type,int WbDay,int stop){
 				sleep(stop);
 				//delay_time(stop);
 			}
+			sleep(stop*1000);
 		}
 		printf("\n");
 	}
