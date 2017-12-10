@@ -174,6 +174,7 @@ char* userInputS( int type , char* message, int visible){// funcCode = 104
 		printf("%s", message);
 		while( (c = func() )){
 				if( c == '\n' || c == EOF ) break;
+				if( type == 1 &&  ( c == ' ' || c == '\t' ) ) continue;
 				if( index < STRBUF && (type == 0 || index < type ) ) buffer[index++] = c;	
 				else{
 						re = 1;
