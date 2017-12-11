@@ -136,7 +136,7 @@ int insert_Dic(int dicNum)
     while(1)
     {
    	  tmpW = (Word*)malloc(sizeof(Word));
-   	  strcpy(buf, userInputS(0, "", 1));
+   	  strcpy(buf, userInputS(0, "", 1, 1));
 
 	  if(strcmp(buf, ".add") == 0)
 	  {
