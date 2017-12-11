@@ -37,7 +37,7 @@ int funcRoute(); // funcCode = 102 // start functions by user input
 // user input functions
 int getch(void); // for invisible input
 int userInputN( char* message /* msg to print for input */, int visible); // funcCode = 103 // return user's Input, Number | return ( error : -1, no error : positive Int )
-char* userInputS( int type /* length of string [ 0 / n ] */, char* message /* msg to print for input*/, int visible /* visibility of user input [ true / false ] */); // funcCode = 104 // return user's Input, String[Character array] ( type | nLetter( 1~n) : n, dynamic : 0 ) korean -> *2 | return ( error : null, no error : char pointer )
+char* userInputS( int type /* length of string [ 0 / n ] */, char* message /* msg to print for input*/, int visible /* visibility of user input [ true / false ] */, int whiteSpaceType); // funcCode = 104 // return user's Input, String[Character array] ( type | nLetter( 1~n) : n, dynamic : 0 ) korean -> *2 | return ( error : null, no error : char pointer )
 
 
 // linked list and file functions
