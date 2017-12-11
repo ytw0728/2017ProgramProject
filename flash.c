@@ -6,17 +6,6 @@ extern Wordbook* head;
 extern int wordbookCNT;
 
 
-
-
-void delay_time(int stop){
-	time_t start_time=0,end_time=0;
-	start_time=clock();
-	while(1){
-		end_time=clock();
-		if(((int)(end_time-start_time)/(CLOCKS_PER_SEC))==stop)
-			break;
-	}
-}	
 	
 
 void flashcard_menu(void){
@@ -86,7 +75,6 @@ void flashcard(Wordbook *now,int type,int WbDay,int stop){
 				printf("%s",Wnow->korDef[j]);
 				//fflush(stdout);
 				//sleep(stop);
-				//delay_time(stop);
 			}
 		}
 		
