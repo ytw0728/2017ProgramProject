@@ -49,13 +49,11 @@ void flashcard_menu(void){
 
 void flashcard(Wordbook *now,int type,int WbDay,int stop){
 	int i,j;
-	int question[31];
+	int question[32];
 	char *day=now->id;
 	int len= WListLen(now->id);
-	
-	for(i=1;i<=len;i++){
+	for(i=0;i<len;i++){
 		question[i]=i;
-		//printf("%d",question[i]);
 	}	
 	question[i]=-1;
 	if(type==2){
@@ -63,16 +61,18 @@ void flashcard(Wordbook *now,int type,int WbDay,int stop){
 		int change;
 		for(change=0;change<100;change++){
 			int temp;
-			int random1=rand()%len;
+			int random1=rand()%(len);
 			int random2;
-			while( ( random2 = (rand()%len)) == random1 ) ; //ran1과 ran2가 다를때까지 실행x
+			while( ( random2=rand()%(len) == random1  )) ; //ran1과 ran2가 다를때까지 실행x
 			temp=question[random1];
 			question[random1]=question[random2];
 			question[random2]=temp;
 		}
 	}
-	for(i=1;i<=len;i++){
-		Word *Wnow=getNthWPtr(WbDay,question[i]);
+	//for(int n=0;n<len;n++)
+	//	printf("%d\n",question[n]+1);
+	for(i=0;i<len;i++){
+		Word *Wnow=getNthWPtr(WbDay,question[i]+1);
 		if(question[i]==-1){
 			printf("모든단어를 출력했습니다.\n");
 			break;
@@ -82,7 +82,7 @@ void flashcard(Wordbook *now,int type,int WbDay,int stop){
 		fflush(stdout);
 		sleep(stop);
 		for(j=0;j<3;j++){
-			if(Wnow->korDef[j]!=NULL){
+			if(Wnow->korDef[j][0]!='\0'){
 				printf("%s",Wnow->korDef[j]);
 				//fflush(stdout);
 				//sleep(stop);
