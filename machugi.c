@@ -94,11 +94,7 @@ void machugi(int type,Wordbook *now,int WbDay){
 		}
 		printf("%s->",Wnow->eng);
 
-		ans=userInputS(0,"", 1);
-		
-			
-				
-		
+		ans=userInputS(0,"", 1, 0);
 		if((strcmp(ans,".quit"))==0){
 			printf("당신의 점수는 %.2f 점입니다.\n",((float)cnt_c/cnt_q)*100);
 			printf("계속하려면 엔터를 입력해주세요...");

@@ -152,7 +152,7 @@ int userInputN(char* message, int visible){ // funcCode = 103
 		return num;
 }
 
-char* userInputS( int type , char* message, int visible){// funcCode = 104
+char* userInputS( int type , char* message, int visible, int whiteSpaceType ){// funcCode = 104
 		funcStat = 104;
 		if( type < 0 ) return NULL;
 		
@@ -174,7 +174,7 @@ char* userInputS( int type , char* message, int visible){// funcCode = 104
 		printf("%s", message);
 		while( (c = func() )){
 				if( c == '\n' || c == EOF ) break;
-				if( type == 1 &&  ( c == ' ' || c == '\t' ) ) continue;
+				if( !whiteSpaceType &&  ( c == ' ' || c == '\t' ) ) continue;
 				if( index < STRBUF && (type == 0 || index < type ) ) buffer[index++] = c;	
 				else{
 						re = 1;
@@ -187,7 +187,7 @@ char* userInputS( int type , char* message, int visible){// funcCode = 104
 		if( re ){
 			printf("[ 다시 입력해주세요. (최대 %dByte ) ]\n", type == 0 ? STRBUF : type);
 			while( c = func() ) if( c == '\n' || c == EOF ) break;
-			str = userInputS( type, message, visible);
+			str = userInputS( type, message, visible, whiteSpaceType);
 		}
 		else{
 			if( type > 0 ) str = (char*)calloc( type+1, sizeof(char));

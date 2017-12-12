@@ -6,17 +6,6 @@ extern Wordbook* head;
 extern int wordbookCNT;
 
 
-
-
-void delay_time(int stop){
-	time_t start_time=0,end_time=0;
-	start_time=clock();
-	while(1){
-		end_time=clock();
-		if(((int)(end_time-start_time)/(CLOCKS_PER_SEC))==stop)
-			break;
-	}
-}	
 	
 //플레시카드의 정보를 입력받는 함수 단어반복출력시간,파일명,타입을 입력하면 플레시카드가 실행된다.
 void flashcard_menu(void){
@@ -93,7 +82,6 @@ void flashcard(Wordbook *now,int type,int WbDay,int stop){
 				printf("%s",Wnow->korDef[j]);
 				//fflush(stdout);
 				//sleep(stop);
-				//delay_time(stop);
 			}
 		}
 		
