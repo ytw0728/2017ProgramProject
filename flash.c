@@ -18,7 +18,7 @@ void delay_time(int stop){
 	}
 }	
 	
-
+//플레시카드의 정보를 입력받는 함수 단어반복출력시간,파일명,타입을 입력하면 플레시카드가 실행된다.
 void flashcard_menu(void){
 	int type;
 	int stop;
@@ -32,6 +32,11 @@ void flashcard_menu(void){
 	}
 	while(1){
 	WbDay=userInputN("파일명(일차):",1);
+	while(WbDay > wordbookCNT || WbDay <1)
+	{
+		printf("단어장 개수 범위 안의 숫자를 입력해주세요\n");
+		WbDay=userInputN("파일명(일차) : ",1);
+	}
 	if(WbDay==0) printf("다시입력하세요\n");
 	else break;
 	}
@@ -41,12 +46,14 @@ void flashcard_menu(void){
 	now=getNthWbPtr(WbDay);
 	while(1){
 	type=userInputN("출력방식(알파벳 순서대로:1, 무작위:2)",1);
+		
 	if(type==0) printf("다시입력하세요\n");
+	else if (type!=1&&type!=2) printf("다시입력하세요\n");
 	else break;
 	}
 	flashcard(now,type,WbDay,stop);
 }
-
+//입력한 반복시간마다 영어단어와 한글뜻이 출력된다.
 void flashcard(Wordbook *now,int type,int WbDay,int stop){
 	int i,j;
 	int question[32];

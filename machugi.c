@@ -6,7 +6,7 @@ extern int programStat;
 extern Wordbook* head;
 extern int wordbookCNT;
 
-
+//단어 맞추기의 정보를 입력받는함수 파일명및출력방식
 void machugi_menu(void){
 	int type;
 	char* day;
@@ -18,6 +18,11 @@ void machugi_menu(void){
 	//scanf("%s",day);
 	while(1){
 	WbDay = userInputN( "파일명(일차) : ", 1);
+	while(WbDay > wordbookCNT || WbDay <1)
+	{
+		printf("단어장 개수 범위 안의 숫자를 입력해주세요\n");
+		WbDay=userInputN("파일명(일차) : ",1);
+	}
 	if(WbDay==0) printf("다시입력하세요\n");
 	else break;
 	}
@@ -40,11 +45,13 @@ void machugi_menu(void){
 	while(1){
 	type=userInputN("출력방식(알파벳  순서대로:1, 무작위:2)", 1);
 	if(type==0) printf("다시입력하세요\n");
+	else if(type!=1&&type!=2) printf("다시입력하세요\n");
 	else break;
 	}
 	machugi(type,now,WbDay);
 
 }
+//단어 맞추는 함수 영어단어와 한글뜻이 같으면 맞고 .quit 를 입력하면 점수를 출력하고 엔터를 입력하면 초기화면으로 돌아간다.
 void machugi(int type,Wordbook *now,int WbDay){  
 	int i;
 	int question[32];
@@ -88,6 +95,10 @@ void machugi(int type,Wordbook *now,int WbDay){
 		printf("%s->",Wnow->eng);
 
 		ans=userInputS(0,"", 1);
+		
+			
+				
+		
 		if((strcmp(ans,".quit"))==0){
 			printf("당신의 점수는 %.2f 점입니다.\n",((float)cnt_c/cnt_q)*100);
 			printf("계속하려면 엔터를 입력해주세요...");
