@@ -43,7 +43,7 @@ int funcRoute(){
 		int n;
 		system("clear"); // 매번 콘솔 화면을 clear 시킨다. 
 		printf(" >> 염어 단어 암기 프로그램 << \n"); 
-		printf(" %-25s %-25s\n","1 : 영어 단어 맞추기", "2 : 플래시 카드" );
+		printf("%-25s %-25s\n","1 : 영어 단어 맞추기", "2 : 플래시 카드" );
 		printf("%-25s %-25s\n","3 : 행맨( hangman )", "4 : 단어장 관리" );
 		printf("%-25s\n", "5 : 프로그램 종료");
 
