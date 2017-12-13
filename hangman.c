@@ -76,7 +76,8 @@ int hangman(Wordbook *now,int WbDay) //행맨프로그램을 실행하는 함수
 		gotoxy(0,20);
 		userinput=userInputS(1,"입력 : ", 1, 0);
 		
-		while( !( 122 >= *userinput && 97 <= *userinput ) && !( 'A' <= *userinput && *userinput <= 'Z' ) ) //사용자가 입력한 것이 알파벳인지 확인하는 반복문
+		while( !( 122 >= *userinput && 97 <= *userinput ) && !( 'A' <= *userinput && *userinput <= 'Z' ) ) //사용자가 입력한 것이 
+			//알파벳인지 확인하는 반복문
 		{	
 			printf("잘못 입력하셨습니다. 알파벳을 입력해주세요\n");
 			userinput=userInputS(1,"입력 : ", 1, 0);
@@ -104,10 +105,10 @@ int hangman(Wordbook *now,int WbDay) //행맨프로그램을 실행하는 함수
 			printf("다시 도전해주세요!\n\n");
 
 
-			printf("메뉴로 돌아가기 위해 q를 입력해주세요...\n");
+			printf("메뉴로 돌아가기 위해 엔터를 입력해주세요...\n");
 			gotoxy(0,10);
 			printf("힌트 : %s\n",word->korDef[NthDef] );
-			while( ( breakC = getch() ) != 'q' && breakC != 'Q' ) ;
+			while( getch() != '\n' ) ;
 			return 0;
 		}
 	}
@@ -116,8 +117,8 @@ int hangman(Wordbook *now,int WbDay) //행맨프로그램을 실행하는 함수
 	paint_frame(wordprint, len);
 	printf("\n\n\n축하합니다! 단어를 맞추셨습니다!!!!!!!!!!!!\n\n\n");
 
-	printf("메뉴로 돌아가기 위해 q를 입력해주세요...\n");
-	while( ( breakC = getch() ) != 'q' && breakC != 'Q' ) ;	 // q 를 누르면 함수 종료.	
+	printf("메뉴로 돌아가기 위해 엔터를 입력해주세요...\n");
+	while( getch() != '\n' ) ; // 엔터를 누르면 함수 종료.	
 	return 0;
 }
 

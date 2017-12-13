@@ -19,7 +19,7 @@ int main(){
 				funcRoute(); // 매번 메인 메뉴를 실행한다. 
 		}
 
-		// system("clear"); // 프로그램을 종료하기 전에 화면을 clear한다.
+		system("clear"); // 프로그램을 종료하기 전에 화면을 clear한다.
 		return 0;
 }
 
@@ -237,7 +237,8 @@ Word* insertWList( Word* head, Word* newNode ){
 		Word* next = now->next; // now 의 다음 값을 미리 확인 하는 next 포인터
 		Word* prev = now; // now 가 가리켰던 이전 값을 나타내는 prev 포인터
 		while( now != NULL ){ // now 가 NULL 일때 까지 반복 
-			if( strcmp( newNode->eng, now->eng ) < 0 ){ // 전달받은 노드와 now가 가리키는 노드의 단어를 비교했을때, 사전식 순서를 기준으로 새로운 노드의 단어가 우선일 때
+			if( strcmp( newNode->eng, now->eng ) < 0 ){ // 전달받은 노드와 now가 가리키는 노드의 단어를 비교했을때, 
+				//사전식 순서를 기준으로 새로운 노드의 단어가 우선일 때
 				newNode->next = now; 
 				if( prev == head ){
 					newNode->next = prev;
@@ -252,7 +253,8 @@ Word* insertWList( Word* head, Word* newNode ){
 				// now 바로 전에 새로운 노드를 삽입하고 반복을 종료한다.
 				// 만약 이전 노드가 head와 같다면 새로운 노드는 새로운 head가 된다.
 			}
-			else if( next == NULL || strcmp( newNode->eng, next->eng ) < 0 ){ // now가 맨 마지막 노드이거나, 사전식 순서를 기준으로 새로운 노드의 단어가 다음 노드의 단어보다 우선일 때
+			else if( next == NULL || strcmp( newNode->eng, next->eng ) < 0 ){ // now가 맨 마지막 노드이거나,
+			// 사전식 순서를 기준으로 새로운 노드의 단어가 다음 노드의 단어보다 우선일 때
 				newNode->next = next;
 				now->next = newNode;
 				break;
@@ -286,7 +288,8 @@ int WListLen(char* id){
 	// 단어장 연결리스트의 head값을 보존하기 위해 now에 head값을 복사한다.
 
 
-	while( now != NULL && strcmp(now->id, id) ) now = now->next; // 단어장 연결리스트의 노드 중 전달받은 id 인자값과 같은 id 문자열을 가지고 있는 노드를 찾아 now로 가리킨다.
+	while( now != NULL && strcmp(now->id, id) ) now = now->next; // 단어장 연결리스트의 노드 중 전달받은 id 인자값과 같은 id 문자열을 
+	//가지고 있는 노드를 찾아 now로 가리킨다.
 
 	Word* wNow; 
 	wNow = now->wHead;
@@ -308,7 +311,8 @@ int openWbFILE( char* id ){
 	char buffer[FILENAMEBUF]; // 파일명 문자열을 담을 버퍼
 	int index = 0;
 	while( index < FILENAMEBUF ) buffer[index++] = 0; // 버퍼를 0으로 초기화
-	strcpy( buffer, id ); strcat(buffer, ".dic"); // 전달받은 id 문자열에 .dic을 이어붙여 (id).dic의 형태로 만들어 buffer에 저장한다. ex) "1.dic" 
+	strcpy( buffer, id ); strcat(buffer, ".dic"); // 전달받은 id 문자열에 .dic을 이어붙여 (id).dic의 형태로 만들어 buffer에 저장한다. 
+	//ex) "1.dic" 
 
 
 	char* fn = (char*)calloc(strlen(buffer) + 1, sizeof(char) );
@@ -325,7 +329,8 @@ int openWbFILE( char* id ){
 	}
 	// 파일이 없을 경우 에러로 간주하고 -1을 반환한다. 
 
-	Wordbook* wbTemp = (Wordbook*)malloc(sizeof(Wordbook)); // 단어장 연결리스트의 노드가 될 단어장 구조체 포인터를 만들고 동적 메모리 할당 후 해당 위치를 저장한다.
+	Wordbook* wbTemp = (Wordbook*)malloc(sizeof(Wordbook)); // 단어장 연결리스트의 노드가 될 단어장 구조체 포인터를 만들고
+	// 동적 메모리 할당 후 해당 위치를 저장한다.
 	strcpy(wbTemp->id, id); // 해당 단어장 파일에서 .dic을 뺀 문자열을 멤버 변수 id배열에 지정해준다.
 	wbTemp->next = NULL; 
 	wbTemp->wHead = NULL;
@@ -348,7 +353,8 @@ int openWbFILE( char* id ){
 	    }
 	    // strtok를 통해 공백을 기준으로 문자열을 나눠 각각 한글 뜻 배열에 저장.
 
-		Word* wTemp = (Word*)malloc( sizeof(Word) ); // 단어 연결리스트의 노드가 될 단어 구조체 포인터를 만들고 동적 메모리 할당 후 해당 위치를 지정.
+		Word* wTemp = (Word*)malloc( sizeof(Word) ); // 단어 연결리스트의 노드가 될 단어 구조체 포인터를 만들고 동적 메모리 할당 후
+		// 해당 위치를 지정.
 
 		strcpy(wTemp->eng, engTmp); // 단어 노드의 영어 단어 멤버 변수에 engTmp 값 복사
 		int i;
@@ -359,7 +365,8 @@ int openWbFILE( char* id ){
 		// 영어 단어에 해당하는 한글 뜻을 있는 만큼 (최대 3개) korDef에 복사하고, 3개 이하일 경우 나머지 한글 뜻 배열에 공문자열 저장
 		wTemp->next = NULL; // 단어 노드의 다음 노드 포인터에 NULL 대입
 
-		wbTemp->wHead = insertWList( wbTemp->wHead, wTemp ); // 단어 노드를 연결리스트에 사전식 순서에 맞춰 순서대로 삽입한 후 반환된 해당 연결 리스트의 head포인터를 단어장의 wHead에 저장
+		wbTemp->wHead = insertWList( wbTemp->wHead, wTemp ); // 단어 노드를 연결리스트에 사전식 순서에 맞춰 순서대로 삽입한 후 
+		//반환된 해당 연결 리스트의 head포인터를 단어장의 wHead에 저장
 	}
 
 	addWbList( wbTemp ); // 단어의 연결리스트화 작업이 끝난 단어장 노드를 단어장 연결리스트의 마지막 부분에 추가한다.
@@ -374,7 +381,8 @@ int writeWbFILE( Wordbook* node){
 	int err = 0;
 
 	char* id; // 파일명 문자열을 가리킬 id 포인터 변수
-	id = (char*)calloc(strlen(node->id)+ 4 + 1, sizeof(char)); //  (id + ".dic" + NULL) 문자열 에 해당하는 길이만큼 동적할당해 그 위치를 id 에 저장.
+	id = (char*)calloc(strlen(node->id)+ 4 + 1, sizeof(char)); //  (id + ".dic" + NULL) 문자열 에 해당하는 길이만큼 동적할당해
+	// 그 위치를 id 에 저장.
 	
 	strcpy( id, node->id);
 	strcat( id, ".dic");
