@@ -8,17 +8,17 @@
 
 ///////////////////////////////////////    struct  //////////////////////////////////////////////////
 typedef struct word{ // struct of word ( will be the node of word linked list )
-	char eng[16];
-	char korDef[3][61];
+	char eng[16]; // 영어 단어 ( 15글자 )
+	char korDef[3][61]; // 한글 뜻 최대 3개 ( 30 글자 )
 
-	struct word* next;
+	struct word* next; // 자기참조 포인터
 }Word;
 
 typedef struct wordbook{ // struct of wordbook ( will be the node of wordbook linked list )
 	char id[5]; // (id).dic file
 		
-	struct wordbook* next;
-	struct word* wHead;
+	struct wordbook* next; // 자기참조 포인터 : 단어장 
+	struct word* wHead; // 자기참조 포인터 : 단어  ( 해당 일차의 단어 연결리스트를 가지고 있음. )
 }Wordbook;	
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -36,7 +36,7 @@ int funcRoute();  // 초기 메뉴 함수, 유저의 입력에 따라 함수를 
 // user input functions
 int getch(void); // getch 구현
 int userInputN( char* message /* 입력 안내 메시지 */, int visible /* 입력이 시각적으로 보일지 안보일지 [ true / false ] */);  // return user's Input, Number | return ( error : -1, no error : positive Int )
-char* userInputS( int type /* 문자열의 바이트 크기 [ 0 최대 1024 동적길이 / n ] */, char* message /* 입력 안내 메시지 */, int visible /* 입력이 시각적으로 보일지 안보일지 [ true / false ] */, int whiteSpaceType /* [ 0 공백문자 무시 | 1 공백문자 허용 ]   */ );  // return user's Input, String[Character array] ( type | nLetter( 1~n) : n, dynamic : 0 ) korean -> *2 | return ( error : null, no error : char pointer )
+char* userInputS( int type /* 문자열의 바이트 크기 [ 0 최대 1024 동적길이 / n ] */, char* message /* 입력 안내 메시지 */, int visible /* 입력이 시각적으로 보일지 안보일지 [ true / false ] */, int whiteSpaceType /* [ 0 공백문자 무시 | 1 공백문자 허용 ]   */ );  // return user's Input, 문자열 ( type | n 바이트 ( 1~n) : n, dynamic : 0 ) 영어에 한한 설명임. |  return ( error : null, no error : char pointer )
 
 
 // linked list and file functions
@@ -44,10 +44,10 @@ int initWbList();  // init word list
 int addWbList( Wordbook* newNode /* 추가할 단어장 노드 포인터 */ );  // add new wordbook node ( end of list )
 Word* insertWList( Word* head /* 단어를 추가할 단어 연결리스트의 헤드 포인터 */, Word* newNode /* 추가할 단어 노드 포인터 */);  //  insert new wordbook node ( anywhere of list )
 
-int WListLen(char* id);   // return the length of word list in (id).dic wordbook
+int WListLen(char* id);   // (id).dic 파일 내의 포함된 단어의 개수를 알려준다.
 
-int openWbFILE( char* id /* id string of wordbook ex) "1", "2", etc. */);  // open wordbook file with id | (id).dic
-int writeWbFILE( Wordbook* node /* struct node to write on file */);  // clear and rewrite (id).dic wordbook file
+int openWbFILE( char* id /* 단어장의 일차 ( "1", "2" 등 ) */);  // (id).dic 파일을 열고 읽는다.
+int writeWbFILE( Wordbook* node /* 파일에 적고자 하는 단어장 노드 */);  // (id).dic에 리스트의 내용을 쓴다.
 
 
 
