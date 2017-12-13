@@ -36,6 +36,7 @@ int hangman(Wordbook *now,int WbDay) //행맨프로그램을 실행하는 함수
 	errorflag=0;
 	char* userinput;
 	char wordprint[15]={0};
+<<<<<<< HEAD
 
 	int Nth=rand()%WListLen(day);
 	if (Nth==0)
@@ -46,6 +47,17 @@ int hangman(Wordbook *now,int WbDay) //행맨프로그램을 실행하는 함수
 	word = getNthWPtr(WbDay,Nth); //단어를 불러옴
 
 
+=======
+	int Nth=rand()%30;
+	if (Nth==0)
+		Nth=Nth+30;
+
+
+
+	Word *word;
+
+	word = getNthWPtr(WbDay,Nth); //단어를 불러옴
+>>>>>>> 35a00b2cb1bc7dfb0553094afc54516cc9ef3a70
 	int NthDef=rand()%3;	//힌트를 제공하는 정수 
 	
 	if (NthDef==2 && word->korDef[2]=="NULL")    // 3번째 또는 2번쨰 뜻이 없을때 뜻을 다시 호출
@@ -128,7 +140,11 @@ int paint_hang(int failcount) //그림그리는 함수. failcount를 통해서 �
 	gotoxy(10,2);
 	printf("------------------+");
 
+<<<<<<< HEAD
 	for(i=0;i<6;i++) 
+=======
+	for(i=0;i<6;i++)
+>>>>>>> 35a00b2cb1bc7dfb0553094afc54516cc9ef3a70
 		a[i]=(char *)calloc(40,sizeof(char));
 	
 	a[0]="    O\n";
@@ -140,7 +156,11 @@ int paint_hang(int failcount) //그림그리는 함수. failcount를 통해서 �
 	
 	gotoxy(24,3);
 
+<<<<<<< HEAD
 	for(i=0;i<failcount+1;i++) //인자로 받은 failcount의 값에 따라 그림을 그림
+=======
+	for(i=0;i<failcount+1;i++)
+>>>>>>> 35a00b2cb1bc7dfb0553094afc54516cc9ef3a70
 		printf("%s",a[i]);
 	
 	return 0;
@@ -157,7 +177,11 @@ void paint_frame(char wordprint[], int len)  //화면의 틀을 짜놓은 함수
 		gotoxy(0,17);
 		
 		for(i=0;i<len;i++) 
+<<<<<<< HEAD
 			printf("%c ",wordprint[i]); //화면에 단어출력
+=======
+			printf("%c ",wordprint[i]);
+>>>>>>> 35a00b2cb1bc7dfb0553094afc54516cc9ef3a70
 
 }
 
