@@ -83,6 +83,8 @@ void machugi(int type,Wordbook *now,int WbDay){
 	char *ans;
 	int c;// 엔터일때  메뉴로 나감
 	int q_num=0;//퀴즈번호
+
+	srand(time(NULL));
 	while(1){
 		Word * Wnow=getNthWPtr(WbDay,question[q_num]+1);
 		if(question[q_num]==-1){
@@ -91,9 +93,15 @@ void machugi(int type,Wordbook *now,int WbDay){
 			while(getch()!='\n');
 			break;
 		}
-		printf("%s->",Wnow->eng);
+		
+		int lenOfDef = 0;
+		while( strcmp( Wnow->korDef[lenOfDef], "" )  ) lenOfDef++;
+
+		int r = rand()%lenOfDef;
+		printf("%s->",Wnow->korDef[r]);
 
 		ans=userInputS(0,"", 1, 0);
+
 		if((strcmp(ans,".quit"))==0){
 			printf("당신의 점수는 %.2f 점입니다.\n",((float)cnt_c/cnt_q)*100);
 			printf("계속하려면 엔터를 입력해주세요...");
@@ -102,14 +110,8 @@ void machugi(int type,Wordbook *now,int WbDay){
 		}
 		int kornum=0;
 		int korcheck=0;
-		while(1){
-		if(Wnow->korDef[kornum][0]=='\0'||kornum==3)
-			break;
-		if((strcmp(ans,Wnow->korDef[kornum])==0)){
-			korcheck=1;
-			}
-		kornum++;
-		}
+		if( !strcmp(ans, Wnow->eng) ) korcheck = 1;
+
 		if(korcheck){
 			printf("correct!\n");
 			cnt_q++;cnt_c++;
