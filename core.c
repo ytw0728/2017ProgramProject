@@ -43,9 +43,9 @@ int funcRoute(){
 		int n;
 		system("clear"); // 매번 콘솔 화면을 clear 시킨다. 
 		printf(" >> 염어 단어 암기 프로그램 << \n"); 
-		printf("1 : %-20s 2 : %-20s\n","영어 단어 맞추기", "플래시 카드" );
-		printf("3 : %-20s 4 : %-20s\n","행맨( hangman )", "단어장 관리" );
-		printf("5 : %-20s\n", "프로그램 종료");
+		printf(" %-25s %-25s\n","1 : 영어 단어 맞추기", "2 : 플래시 카드" );
+		printf("%-25s %-25s\n","3 : 행맨( hangman )", "4 : 단어장 관리" );
+		printf("%-25s\n", "5 : 프로그램 종료");
 
 		do{
 				n = userInputN("번호를 선택하세요 : ", 1);
@@ -285,7 +285,8 @@ int WListLen(char* id){
 	now = head;
 	// 단어장 연결리스트의 head값을 보존하기 위해 now에 head값을 복사한다.
 
-	while( now != NULL && !strcmp(now->id, id) ) now = now->next; // 단어장 연결리스트의 노드 중 전달받은 id 인자값과 같은 id 문자열을 가지고 있는 노드를 찾아 now로 가리킨다.
+
+	while( now != NULL && strcmp(now->id, id) ) now = now->next; // 단어장 연결리스트의 노드 중 전달받은 id 인자값과 같은 id 문자열을 가지고 있는 노드를 찾아 now로 가리킨다.
 
 	Word* wNow; 
 	wNow = now->wHead;
