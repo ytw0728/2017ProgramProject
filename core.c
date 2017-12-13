@@ -8,9 +8,8 @@
 // global variables
 int programStat = 1; // init : 1, ready to end : -1, end : 0, keyboard input : 10, file input : 20, file output : 25 )
 
-Wordbook* head = NULL; // Wordbook head pointer;
-int wordbookCNT = 0; // the number of wordbook in list
-
+Wordbook* head = NULL; // Wordbook head 포인터 ( 단어장의 연결리스트 즉, 자기참조구조체의 헤드포인터)
+int wordbookCNT = 0; // 단어장 연결리스트의 노드 갯수 : 총 단어장의 갯수 및 일차를 알 수 있다.
 
 
 int main(){

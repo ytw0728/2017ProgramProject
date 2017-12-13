@@ -1,4 +1,3 @@
-
 #include "SSUpreme.h"
 
 #define STRBUF 1024

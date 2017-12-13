@@ -33,7 +33,7 @@ void flashcard_menu(void){
 	//WbDay=atoi(day);
 	now=getNthWbPtr(WbDay);
 	while(1){
-	type=userInputN("출력방식(알파벳 순서대로:1, 무작위:2)",1);
+	type=userInputN("출력방식(알파벳 순서대로:1, 무작위:2) : ",1);
 		
 	if(type==0) printf("다시입력하세요\n");
 	else if (type!=1&&type!=2) printf("다시입력하세요\n");
