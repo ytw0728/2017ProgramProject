@@ -3,7 +3,6 @@
 
 #define STRBUF 1024
 
-extern int funcStat;
 extern int programStat;
 extern Wordbook* head;
 extern int wordbookCNT;

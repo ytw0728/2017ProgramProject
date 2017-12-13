@@ -1,7 +1,6 @@
 #include "SSUpreme.h"
 
 
-extern int funcStat;
 extern int programStat;
 extern Wordbook* head;
 extern int wordbookCNT;

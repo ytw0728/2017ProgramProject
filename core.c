@@ -6,38 +6,16 @@
 
 
 // global variables
-int funcStat = 100; // the number of running func ( prefix | core : 1 , managing word : 2, hangman : 3, quiz : 4, flash card : 5, error handling : 9 )
 int programStat = 1; // init : 1, ready to end : -1, end : 0, keyboard input : 10, file input : 20, file output : 25 )
 
 Wordbook* head = NULL; // Wordbook head pointer;
 int wordbookCNT = 0; // the number of wordbook in list
 
 
-// testcode //
- void printAllWord(){
-	printf("%d\n", wordbookCNT );
- 	//printf("\nletsprint\n");
- 	Wordbook* now;
- 	now = head;
-
-	while( now != NULL ){
- 		printf("%s.dic\n", now->id );
- 		Word* wordNow = now->wHead;
- 		while( wordNow != NULL ){
- 			printf("%s %s %s %s\n", wordNow->eng, wordNow->korDef[0], wordNow->korDef[1], wordNow->korDef[2]);
- 			wordNow = wordNow->next;
- 		}
- 		printf("\n");
-
-		now = now->next;
- 	}
-}
 
 int main(){
 
 		init();
-
-		// printAllWord();
 
 		while( programStat ){
 				funcRoute();
@@ -46,9 +24,9 @@ int main(){
 		return 0;
 }
 
-int init(){ // funcCode = 101
+int init(){ 
 		int err = 0;
-		funcStat = 101;
+		
 
 		err = initWbList();
 
@@ -59,13 +37,8 @@ void gotoxy( int x, int y){
 		printf("\033[%d;%dH", y,x);
 }
 
-void switchByErr(int errCode){
-		printf("error code : %d | from %d function\n", errCode, funcStat);
-}
 
-int funcRoute(){ // funcCode = 102
-		funcStat = 102;
-
+int funcRoute(){ 
 		int err = 0;
 
 		int n;
@@ -109,8 +82,11 @@ int getch(void){
 }
 
 
-int userInputN(char* message, int visible){ // funcCode = 103
-		funcStat = 103;
+int userInputN(char* message, int visible){ 
+		
+		int psTmp = programStat; 
+		programStat = 10;
+
 		int err = 0;
 
 
@@ -141,6 +117,7 @@ int userInputN(char* message, int visible){ // funcCode = 103
 				}
 		}
 
+		programStat = psTmp;
 		if( err ) return -1;
 		if( re ){
 				printf("[하나의 정수만 입력해주세요]\n");
@@ -152,9 +129,11 @@ int userInputN(char* message, int visible){ // funcCode = 103
 		return num;
 }
 
-char* userInputS( int type , char* message, int visible, int whiteSpaceType ){// funcCode = 104
-		funcStat = 104;
+char* userInputS( int type , char* message, int visible, int whiteSpaceType ){
+		
 		if( type < 0 ) return NULL;
+		int psTmp = programStat; 
+		programStat = 10;
 		
 		int (*func)(void);
 		if( visible ) func = getchar;
@@ -182,7 +161,7 @@ char* userInputS( int type , char* message, int visible, int whiteSpaceType ){//
 				}
 		}
 
-
+		programStat = psTmp;
 		if( err ) return NULL;
 		if( re ){
 			printf("[ 다시 입력해주세요. (최대 %dByte ) ]\n", type == 0 ? STRBUF : type);
@@ -200,10 +179,13 @@ char* userInputS( int type , char* message, int visible, int whiteSpaceType ){//
 }
 
 
-int initWbList(){ // funcCode = 199
-	funcStat = 199;
+int initWbList(){ 
+	
 	int err = 0;
 	FILE* fp = fopen("dicList","r");
+	int psTmp = programStat; 
+	programStat = 20;
+
 	if( fp == NULL ){
 		err = -1;
 		return err;
@@ -220,12 +202,13 @@ int initWbList(){ // funcCode = 199
 	}
 
 	fclose(fp);
+	programStat = psTmp;
 
 	return err;
 }
 	
-int addWbList( Wordbook* newNode ){ // funcCode = 120 // insert new wordbook node
-	funcStat = 120;
+int addWbList( Wordbook* newNode ){ 
+	
 	int err = 0;
 	if( head == NULL ) head = newNode;
 	else{
@@ -239,8 +222,8 @@ int addWbList( Wordbook* newNode ){ // funcCode = 120 // insert new wordbook nod
 	return err;
 }
 
-Word* insertWList( Word* head, Word* newNode ){ // funcCode = 121 // insert new wordbook node
-	funcStat = 121;
+Word* insertWList( Word* head, Word* newNode ){ 
+	
 	int err = 0;
 	if( head == NULL ) head = newNode;
 	else{
@@ -283,8 +266,8 @@ Word* insertWList( Word* head, Word* newNode ){ // funcCode = 121 // insert new 
 
 
 
-int WListLen(char* id){ // funcCode = 130 
-	funcStat = 130;
+int WListLen(char* id){ 
+	
 	
 	int len = 0;
 	Wordbook* now;
@@ -303,8 +286,8 @@ int WListLen(char* id){ // funcCode = 130
 	return len;
 }
 
-int openWbFILE( char* id ){ // funcCode = 110
-	funcStat = 110;
+int openWbFILE( char* id ){ 
+	
 	int err = 0;
 
 	char buffer[100];
@@ -315,6 +298,9 @@ int openWbFILE( char* id ){ // funcCode = 110
 
 	char* fn = (char*)calloc(strlen(buffer) + 1, sizeof(char) );
 	strcpy( fn, buffer);
+
+	int psTmp = programStat;
+	programStat = 20;
 
 	FILE* fp = fopen( fn,"r");
 	if( fp == NULL ){
@@ -357,12 +343,13 @@ int openWbFILE( char* id ){ // funcCode = 110
 
 	addWbList( wbTemp );
 	fclose(fp);
+	programStat = psTmp;
 
 	return err;
 }
 
-int writeWbFILE( Wordbook* node){ // funcCode = 111
-	funcStat = 111;
+int writeWbFILE( Wordbook* node){ 
+	
 	int err = 0;
 
 	char* id;
@@ -370,6 +357,10 @@ int writeWbFILE( Wordbook* node){ // funcCode = 111
 	
 	strcpy( id, node->id);
 	strcat( id, ".dic");
+
+	int psTmp = programStat;
+	programStat = 25;
+
 	FILE* fp = fopen(id, "w");
 	if( fp == NULL ){
 		err = -1;
@@ -395,6 +386,8 @@ int writeWbFILE( Wordbook* node){ // funcCode = 111
 	}
 
 	fclose(fp);
+	programStat = psTmp;
+
 	return err;
 }
 
