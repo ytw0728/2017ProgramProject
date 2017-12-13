@@ -40,7 +40,7 @@ char* userInputS( int type /* 문자열의 바이트 크기 [ 0 최대 1024 동�
 
 
 // linked list and file functions
-int initWbList();  // init word list
+int initWbList();  // 단어장 연결리스트와 단어 연결리스트 초기화
 int addWbList( Wordbook* newNode /* 추가할 단어장 노드 포인터 */ );  // add new wordbook node ( end of list )
 Word* insertWList( Word* head /* 단어를 추가할 단어 연결리스트의 헤드 포인터 */, Word* newNode /* 추가할 단어 노드 포인터 */);  //  insert new wordbook node ( anywhere of list )
 
