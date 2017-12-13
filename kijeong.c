@@ -6,7 +6,7 @@ extern int programStat;
 extern Wordbook* head;
 extern int wordbookCNT;
 
-//return Nth Wordbook* from head
+//n번째 Wordbook 포인터 리턴
 Wordbook* getNthWbPtr(int n)
 {
     Wordbook* now = head;
@@ -30,7 +30,7 @@ Wordbook* getNthWbPtr(int n)
     return now;
 }
 
-//return Wnth Word* from Wbnth WordBook.
+//Wbn번째 Wordbook 포인터의 Wn번째 단어 리턴
 Word* getNthWPtr(int Wbn, int Wn)
 {
 	Wordbook* tmpWb;
@@ -56,6 +56,7 @@ Word* getNthWPtr(int Wbn, int Wn)
     return ptr;
 }
 
+//선택 분기 함수
 int menu(void)
 {
     int 		choice = 0;
@@ -112,6 +113,7 @@ int menu(void)
         }
     }
 }
+//dicNum번째 단어장에 단어 추가
 int insert_Dic(int dicNum)
 {
 	Wordbook* 	tmpWb;
@@ -157,6 +159,7 @@ int insert_Dic(int dicNum)
 	}
 	return -1;
 }
+//dicNum번째 단어장의 모든 단어와 뜻 출력
 int print_Dic(int dicNum)
 {
 	Wordbook* 	tmpWb;
@@ -180,6 +183,8 @@ int print_Dic(int dicNum)
     }
 	return 1;
 }
+
+//dicNum.dic  단어장 파일 생성
 int makeDic(int dicNum)
 {
     char buf[5];
@@ -195,7 +200,7 @@ int makeDic(int dicNum)
 	printf("%d.dic 파일이 추가되었습니다.\n", dicNum);
 }
 
-//print all .dic file
+//woordbookCNT(현재 단어장 갯수)에 따라서 현재 단어장 파일명(.dic)모두 출력
 void print_nDic(void)
 {
     int i = 0;
